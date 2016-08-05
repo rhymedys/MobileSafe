@@ -1,2 +1,2 @@
 # MobileSafe
-An Android imitative projection of Mobilesafe Assistant
+An imitative Android projection of Mobilesafe Assistant
