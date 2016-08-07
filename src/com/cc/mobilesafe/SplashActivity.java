@@ -23,6 +23,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -141,6 +142,16 @@ public class SplashActivity extends Activity {
 			}
 		});
 		
+		builder.setOnCancelListener(new OnCancelListener() {
+			
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				// TODO 自动生成的方法存根
+				enterHome();
+				dialog.dismiss();
+			}
+		});
+		
 		builder.show();
 	}
 
@@ -204,8 +215,7 @@ public class SplashActivity extends Activity {
 		Intent intent = new Intent("android.intent.action.VIEW");
 		intent.addCategory("android.intent.category.DEFAULT" );
 		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-		startActivity(intent);
-		finish();
+		startActivityForResult(intent, 0);
 	}
 
 
@@ -340,5 +350,13 @@ public class SplashActivity extends Activity {
 		
 		tv_version_name = (TextView) findViewById(R.id.tv_version_name);
 
+	}
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO 自动生成的方法存根
+		enterHome();
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 }
