@@ -17,7 +17,6 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 
-import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -34,6 +33,10 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -94,6 +97,7 @@ public class SplashActivity extends Activity {
 
 	};
 	private String versionDes;
+	private RelativeLayout rl_root;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +107,23 @@ public class SplashActivity extends Activity {
 
 		initUI();
 		initDate();
+		initAnimation();
 	}
 
 	
+	/**
+	 * 初始化淡入动画
+	 */
+	private void initAnimation() {
+		// TODO 自动生成的方法存根
+		Animation  animation=AnimationUtils.loadAnimation(context, R.anim.splash_alpha_animation);
+		
+		rl_root = (RelativeLayout) findViewById(R.id.rl_root);
+		rl_root.startAnimation(animation);
+		
+	}
+
+
 	/**
 	 *  弹出更新对话框
 	 */
