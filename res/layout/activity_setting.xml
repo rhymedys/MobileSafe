@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cc.mobilesafe.activity.SettingActivity" >
+
+    <TextView
+        style="@style/TitleStyle"
+        android:text="设置中心" />
+ 	
+    <com.cc.mobilesafe.view.SettingItemView
+       android:layout_width="match_parent" 
+       android:layout_height="wrap_content">
+    </com.cc.mobilesafe.view.SettingItemView>
+    <com.cc.mobilesafe.view.SettingItemView
+       android:layout_width="match_parent" 
+       android:layout_height="wrap_content">
+    </com.cc.mobilesafe.view.SettingItemView>
+
+	
+    
+</LinearLayout>

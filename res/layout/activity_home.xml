@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cc.mobilesafe.HomeActivity" >
+    tools:context="com.cc.mobilesafe.activity.HomeActivity" >
 
     <TextView
         android:id="@+id/tv_home_Title"
@@ -21,14 +21,19 @@
         android:text="欢迎使用  Copyright © 2015-2016, Rhymedys, All Rights Reserved "
         android:textColor="#000" />
 
-    <GridView
-        android:id="@+id/gv_HomeView"
+    <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="3" 
-        android:verticalSpacing="10dp"
-        
-        >
-    </GridView>
+        android:orientation="vertical" >
+
+        <GridView
+            android:id="@+id/gv_HomeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="3"
+            android:verticalSpacing="10dp" >
+        </GridView>
+    </LinearLayout>
 
 </LinearLayout>

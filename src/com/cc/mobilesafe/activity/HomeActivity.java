@@ -1,20 +1,36 @@
-package com.cc.mobilesafe;
+package com.cc.mobilesafe.activity;
 
+import java.lang.annotation.Annotation;
+
+import com.cc.mobilesafe.R;
+import com.cc.mobilesafe.R.drawable;
+import com.cc.mobilesafe.R.id;
+import com.cc.mobilesafe.R.layout;
+import com.cc.mobilesafe.R.menu;
 import com.cc.mobilesafe.adapter.HomeGridViewAdapter;
+import com.lidroid.xutils.view.annotation.event.OnChildClick;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends Activity implements OnItemClickListener {
 
 	private Context context;
 	private GridView gv_HomeView;
 	private String[] titleStrs;
 	private int [] picInts;
+	private FragmentManager fragmentManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +40,7 @@ public class HomeActivity extends Activity {
 
 		initUI();
 		initData();
-
+		gv_HomeView.setOnItemClickListener(this);
 	}
 
 	/**
@@ -46,6 +62,8 @@ public class HomeActivity extends Activity {
 	private void initUI() {
 		// TODO 自动生成的方法存根
 		gv_HomeView = (GridView) findViewById(R.id.gv_HomeView);
+		
+		
 
 	}
 
@@ -66,5 +84,45 @@ public class HomeActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		// TODO 自动生成的方法存根
+
+		switch (position) {
+		case 0:
+			
+			break;
+		case 1:
+			
+			break;
+		case 2:
+			
+			break;
+		case 3:
+			
+			break;
+		case 4:
+			
+			break;
+		case 5:
+			
+			break;
+		case 6:
+			
+			break;
+		case 7:
+			
+			break;
+		case 8:
+			startActivity(new Intent(context, SettingActivity.class));
+			break;
+			
+
+		default:
+			break;
+		}
+
 	}
 }

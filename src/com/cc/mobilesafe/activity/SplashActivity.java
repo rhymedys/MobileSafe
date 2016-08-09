@@ -1,4 +1,4 @@
-package com.cc.mobilesafe;
+package com.cc.mobilesafe.activity;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.utils.LogUtils;
 import com.cc.mobilesafe.utils.StreamUtil;
 import com.cc.mobilesafe.utils.ToastUtil;
