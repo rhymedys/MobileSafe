@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-        <RelativeLayout style="@style/SettingActivity_RelativeStyle" >
+
+    <RelativeLayout style="@style/SettingActivity_RelativeStyle" >
 
         <TextView
             android:id="@+id/tv_title"
@@ -18,7 +19,10 @@
 
         <CheckBox
             android:id="@+id/cb_box"
-            style="@style/SettingActivity_CheckBox" />
+            style="@style/SettingActivity_CheckBox"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:clickable="false" />
 
         <View
             style="@style/SettingActivity_View"

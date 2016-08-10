@@ -39,7 +39,6 @@ public class SettingItemView extends RelativeLayout {
 		TextView tv_title = (TextView) findViewById(R.id.tv_title);
 		tv_des = (TextView) findViewById(R.id.tv_des);
 		cb_box = (CheckBox) findViewById(R.id.cb_box);
-
 	}
 
 	/**
