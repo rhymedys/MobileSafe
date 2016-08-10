@@ -10,7 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cc.mobilesafe.R;
+import com.cc.mobilesafe.utils.ConstantValue;
 import com.cc.mobilesafe.utils.LogUtils;
+import com.cc.mobilesafe.utils.SpUtils;
 import com.cc.mobilesafe.utils.StreamUtil;
 import com.cc.mobilesafe.utils.ToastUtil;
 import com.lidroid.xutils.HttpUtils;
@@ -95,6 +97,8 @@ public class SplashActivity extends Activity {
 				break;
 			}
 		}
+		
+		
 
 	};
 	private String versionDes;
@@ -218,8 +222,8 @@ public class SplashActivity extends Activity {
 					// 
 					super.onLoading(total, current, isUploading);
 					
-					LogUtils.i(TAG, new String().valueOf(total));
-					LogUtils.i(TAG, new String().valueOf(current));
+					LogUtils.i(TAG, String.valueOf(total));
+					LogUtils.i(TAG, String.valueOf(current));
 				}
 			});
 		}
@@ -251,10 +255,18 @@ public class SplashActivity extends Activity {
 	 * 初始化数据
 	 */
 	private void initDate() {
-		
+		long starTime = System.currentTimeMillis();
 		tv_version_name.setText(getVersionName());
 		mLocalVersionCode = getVersionCode();
-		checkVersion();
+		if (SpUtils.getBoolean(context, ConstantValue.OPENUPDATE, false)) {
+			checkVersion();
+		}else {
+			Message msg = Message.obtain();
+			msg.what=ENTER_HOME;
+			handler.sendMessageDelayed(msg, 4000);
+			
+		}
+		
 
 	}
 
