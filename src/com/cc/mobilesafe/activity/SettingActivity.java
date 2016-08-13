@@ -30,8 +30,11 @@ public class SettingActivity extends Activity {
 		initUPdate();
 	}
 
+	/**
+	 * 初始话 更新 设置
+	 */
 	private void initUPdate() {
-		// TODO 自动生成的方法存根
+		
 		 siv_Update  =(SettingItemView) findViewById(R.id.siv_Update);
 		 boolean saveResult = SpUtils.getBoolean(context, ConstantValue.OPENUPDATE, false);
 		 siv_Update.setCheck(saveResult);
@@ -39,7 +42,7 @@ public class SettingActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
+				
 				boolean check = siv_Update.isCheck();
 				siv_Update.setCheck(!check);
 				SpUtils.putBoolean(context, ConstantValue.OPENUPDATE, !check);

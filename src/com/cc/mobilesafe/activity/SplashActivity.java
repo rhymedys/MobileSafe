@@ -36,7 +36,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
@@ -68,6 +67,8 @@ public class SplashActivity extends Activity {
 	private String versionName;
 	private int mLocalVersionCode;
 	private  String mDownloadUrl;
+	private String versionDes;
+	private RelativeLayout rl_root;
 	private Handler handler = new Handler() {
 
 		@Override
@@ -101,8 +102,6 @@ public class SplashActivity extends Activity {
 		
 
 	};
-	private String versionDes;
-	private RelativeLayout rl_root;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +119,7 @@ public class SplashActivity extends Activity {
 	 * 初始化淡入动画
 	 */
 	private void initAnimation() {
-		// TODO 自动生成的方法存根
+		
 		Animation  animation=AnimationUtils.loadAnimation(context, R.anim.splash_alpha_animation);
 		
 		rl_root = (RelativeLayout) findViewById(R.id.rl_root);
@@ -169,7 +168,7 @@ public class SplashActivity extends Activity {
 			
 			@Override
 			public void onCancel(DialogInterface dialog) {
-				// TODO 自动生成的方法存根
+				
 				enterHome();
 				dialog.dismiss();
 			}
@@ -190,7 +189,7 @@ public class SplashActivity extends Activity {
 				public void onSuccess(ResponseInfo<File> arg0) {
 					// 
 					File file = arg0.result;
-					Toast.makeText(context, "下载成功", 0).show();
+					Toast.makeText(context, "下载成功", Toast.LENGTH_SHORT).show();
 					installAPK(file);
 					
 					
@@ -200,7 +199,7 @@ public class SplashActivity extends Activity {
 				@Override
 				public void onFailure(HttpException arg0, String arg1) {
 					// 
-					Toast.makeText(context, "下载失败", 0).show();
+					Toast.makeText(context, "下载失败", Toast.LENGTH_SHORT).show();
 					
 					
 					LogUtils.i(TAG, "onFailure");
@@ -209,7 +208,7 @@ public class SplashActivity extends Activity {
 				@Override
 				public void onStart() {
 					// 
-					Toast.makeText(context, "开始下载...", 0).show();
+					Toast.makeText(context, "开始下载...", Toast.LENGTH_SHORT).show();
 					super.onStart();
 					
 					
@@ -255,7 +254,6 @@ public class SplashActivity extends Activity {
 	 * 初始化数据
 	 */
 	private void initDate() {
-		long starTime = System.currentTimeMillis();
 		tv_version_name.setText(getVersionName());
 		mLocalVersionCode = getVersionCode();
 		if (SpUtils.getBoolean(context, ConstantValue.OPENUPDATE, false)) {
@@ -386,7 +384,7 @@ public class SplashActivity extends Activity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO 自动生成的方法存根
+		
 		enterHome();
 		super.onActivityResult(requestCode, resultCode, data);
 	}

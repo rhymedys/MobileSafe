@@ -11,9 +11,12 @@ import android.widget.TextView;
 
 public class SettingItemView extends RelativeLayout {
 
-	public static final int CustomizeStyle = 0x7f010004;
+	private static final String NAMESPACE = "http://schemas.android.com/apk/res/com.cc.mobilesafe";
 	private CheckBox cb_box;
 	private TextView tv_des;
+	private String mDesoff;
+	private String mDeson;
+	private String mDestitle;
 
 	public SettingItemView(Context context) {
 		this(context, null);
@@ -39,6 +42,20 @@ public class SettingItemView extends RelativeLayout {
 		TextView tv_title = (TextView) findViewById(R.id.tv_title);
 		tv_des = (TextView) findViewById(R.id.tv_des);
 		cb_box = (CheckBox) findViewById(R.id.cb_box);
+		
+		
+		initAttrs(attrs);
+		tv_title.setText(mDestitle);
+	}
+
+	/**
+	 * @param attrs构造方法中维护好的属性集合
+	 * 返回属性集合中自定义的属性值
+	 */
+	private void initAttrs(AttributeSet attrs) {
+		mDestitle = attrs.getAttributeValue(NAMESPACE, "destitle");
+		mDesoff = attrs.getAttributeValue(NAMESPACE, "desoff");
+		mDeson = attrs.getAttributeValue(NAMESPACE, "deson");
 	}
 
 	/**
@@ -57,9 +74,9 @@ public class SettingItemView extends RelativeLayout {
 	public void setCheck(boolean isCkeck) {
 		cb_box.setChecked(isCkeck);
 		if (isCkeck) {
-			tv_des.setText("自动更新已开启");
+			tv_des.setText(mDeson);
 		}else {
-			tv_des.setText("自动更新已关闭");
+			tv_des.setText(mDesoff);
 		}
 	}
 	
