@@ -9,7 +9,7 @@ public class SpUtils {
 	/**
 	 * 配置文件的名称
 	 */
-	public static final String IPCONFIG = "ipconfig";
+	public static final String CONFIG = "config";
 
 	/**
 	 * 写入存储标识
@@ -19,7 +19,7 @@ public class SpUtils {
 	 */
 	public static void putBoolean(Context context, String key, boolean value) {
 		if (sp==null) {
-			sp = context.getSharedPreferences(IPCONFIG, context.MODE_PRIVATE);
+			sp = context.getSharedPreferences(CONFIG, context.MODE_PRIVATE);
 		}
 		Editor edit = sp.edit();
 		edit.putBoolean(key, value);
@@ -36,7 +36,7 @@ public class SpUtils {
 	 */
 	public static boolean getBoolean(Context context, String key, boolean defValue) {
 		if (sp==null) {
-			sp = context.getSharedPreferences(IPCONFIG, context.MODE_PRIVATE);
+			sp = context.getSharedPreferences(CONFIG, context.MODE_PRIVATE);
 		}
 		return sp.getBoolean(key, defValue);
 	
@@ -50,7 +50,7 @@ public class SpUtils {
 	 */
 	public static void putString(Context context, String key, String value) {
 		if (sp==null) {
-			sp = context.getSharedPreferences(IPCONFIG, context.MODE_PRIVATE);
+			sp = context.getSharedPreferences(CONFIG, context.MODE_PRIVATE);
 		}
 		Editor edit = sp.edit();
 		edit.putString(key, value);
@@ -67,10 +67,27 @@ public class SpUtils {
 	 */
 	public static String getString(Context context, String key, String defValue) {
 		if (sp==null) {
-			sp = context.getSharedPreferences(IPCONFIG, context.MODE_PRIVATE);
+			sp = context.getSharedPreferences(CONFIG, context.MODE_PRIVATE);
 		}
 		return sp.getString(key, defValue);
 	
 		
 	}
+
+	/**
+	 * @param context 上下文
+	 * @param key 要删除的key键值
+	 */
+	public static void remove(Context context, String key) {
+		// TODO 自动生成的方法存根
+		if (sp==null) {
+			sp=context.getSharedPreferences(CONFIG, context.MODE_PRIVATE);
+		}
+		Editor edit = sp.edit();
+		edit.remove(key);
+		edit.commit();
+	}
+	
+	
+
 }

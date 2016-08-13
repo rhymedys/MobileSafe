@@ -69,7 +69,7 @@ public class SettingItemView extends RelativeLayout {
 
 	/**
 	 * @param isCkeck
-	 *            是否作为开启的变量
+	 *            作为是否开启的变量
 	 */
 	public void setCheck(boolean isCkeck) {
 		cb_box.setChecked(isCkeck);

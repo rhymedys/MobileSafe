@@ -19,4 +19,14 @@ public class ConstantValue {
 	 */
 	public static final String MOBILE_SAFE_PWD = "mobile_safe_pwd";
 
+	/**
+	 * 是否设置玩防盗系统导航的key
+	 */
+	public static final String SETUP_OVER = "setup_over";
+
+	/**
+	 * SIM卡绑定序列号的的key
+	 */
+	public static final String SIMNUM = null;
+
 }

@@ -167,7 +167,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 				if (!TextUtils.isEmpty(pwd)) {
 					String result = SpUtils.getString(context, ConstantValue.MOBILE_SAFE_PWD, "");
 					if (pwd.equals(result)) {
-						startActivity(new Intent(context, SettingActivity.class));
+						startActivity(new Intent(context, SetupOverActivity.class));
 						dialog.dismiss();
 					} else {
 						ToastUtil.show(context, "密码错误");
@@ -219,7 +219,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 				if (!TextUtils.isEmpty(pwd) && !TextUtils.isEmpty(rpwd)) {
 					if (pwd.equals(rpwd)) {
 						SpUtils.putString(context, ConstantValue.MOBILE_SAFE_PWD, pwd);
-						Intent intent = new Intent(context, SettingActivity.class);
+						Intent intent = new Intent(context, SetupOverActivity.class);
 						startActivity(intent);
 						dialog.dismiss();
 					} else {
