@@ -58,6 +58,7 @@ public class Setup3Activity extends Activity {
 				if (!TextUtils.isEmpty(num)) {
 					SpUtils.putString(context, ConstantValue.SAFE_CONTACT_NUM, num);
 					startActivity(new Intent(context, Setup4Activity.class));
+					overridePendingTransition(R.anim.next_in_anim, R.anim.next_in_out_anim);
 					finish();
 				}else{
 					ToastUtil.show(context, "请输入安全号码");
@@ -72,6 +73,7 @@ public class Setup3Activity extends Activity {
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				startActivity(new Intent(context, Setup2Activity.class));
+				overridePendingTransition(R.anim.pre_in_anim, R.anim.pre_in_out_anim);
 				finish();
 			}
 		});
