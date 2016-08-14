@@ -7,7 +7,7 @@
 
     <TextView
         style="@style/TitleStyle"
-        android:text="手机防盗" />
+        android:text="设置完成" />
 
     <CheckBox
         android:id="@+id/cb_box"

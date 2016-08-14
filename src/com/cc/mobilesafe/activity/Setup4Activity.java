@@ -6,6 +6,7 @@ import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
 import com.cc.mobilesafe.utils.ConstantValue;
 import com.cc.mobilesafe.utils.SpUtils;
+import com.cc.mobilesafe.utils.ToastUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,17 +16,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class Setup4Activity extends Activity {
 
 	private Context context;
+	private CheckBox cb_box;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setup4);
-		this.context=this;
-		
+		this.context = this;
+
 		initUI();
 	}
 
@@ -33,28 +38,59 @@ public class Setup4Activity extends Activity {
 	 * 初始化ui布局
 	 */
 	private void initUI() {
-		// TODO 自动生成的方法存根
+		// 
+		boolean open_safe_security = SpUtils.getBoolean(context, ConstantValue.OPEN_SAFE_SECURITY, false);
+		cb_box = (CheckBox) findViewById(R.id.cb_box);
+		// cb设置初始化状态
+		cb_box.setChecked(open_safe_security);
+		if (open_safe_security) {
+			cb_box.setText("安全设置已开启");
+		} else {
+			cb_box.setText("安全设置已关闭");
+		}
+		// 设置点击状态
+		cb_box.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// 
+
+				if (isChecked) {
+					cb_box.setText("安全设置已开启");
+				} else {
+					cb_box.setText("安全设置已关闭");
+				}
+				SpUtils.putBoolean(context, ConstantValue.OPEN_SAFE_SECURITY, isChecked);
+			}
+		});
+
 		findViewById(R.id.btn_SetupBack).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-				startActivity(new Intent(context,Setup3Activity.class));
+				// 
+				startActivity(new Intent(context, Setup3Activity.class));
 				finish();
 			}
 		});
-		
-		
+
 		findViewById(R.id.btn_SetupNext).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-				SpUtils.putBoolean(context, ConstantValue.SETUP_OVER, true);
-				startActivity(new Intent(context,SetupOverActivity.class));
-				finish();
+				// 
+				boolean temp = SpUtils.getBoolean(context, ConstantValue.OPEN_SAFE_SECURITY, false);
+				if (temp) {
+					SpUtils.putBoolean(context, ConstantValue.SETUP_OVER, true);
+					startActivity(new Intent(context, SetupOverActivity.class));
+					finish();
+				} else {
+					ToastUtil.show(context, "安全设置未开启");
+				}
+
 			}
 		});
+
 	}
 
 	@Override

@@ -34,4 +34,6 @@ public class ConstantValue {
 	 */
 	public static final String SAFE_CONTACT_NUM = "safe_contact_num";
 
+	public static final String OPEN_SAFE_SECURITY = "open_safe_security";
+
 }
