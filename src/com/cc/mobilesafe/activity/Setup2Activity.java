@@ -59,6 +59,7 @@ public class Setup2Activity extends Activity {
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				startActivity(new Intent(context,SetupActivity.class));
+				overridePendingTransition(R.anim.pre_in_anim, R.anim.pre_in_out_anim);
 				finish();
 			}
 		});
@@ -70,6 +71,7 @@ public class Setup2Activity extends Activity {
 				// TODO 自动生成的方法存根
 				if (!TextUtils.isEmpty(SpUtils.getString(context, ConstantValue.SIMNUM, ""))) {
 					startActivity(new Intent(context,Setup3Activity.class));
+					overridePendingTransition(R.anim.next_in_anim, R.anim.next_in_out_anim);
 					finish();
 				}else {
 					ToastUtil.show(context, "请绑定sim卡后继续下一页操作");

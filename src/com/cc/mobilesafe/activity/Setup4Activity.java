@@ -70,6 +70,7 @@ public class Setup4Activity extends Activity {
 			public void onClick(View v) {
 				// 
 				startActivity(new Intent(context, Setup3Activity.class));
+				overridePendingTransition(R.anim.pre_in_anim, R.anim.pre_in_out_anim);
 				finish();
 			}
 		});
@@ -82,7 +83,9 @@ public class Setup4Activity extends Activity {
 				boolean temp = SpUtils.getBoolean(context, ConstantValue.OPEN_SAFE_SECURITY, false);
 				if (temp) {
 					SpUtils.putBoolean(context, ConstantValue.SETUP_OVER, true);
+					
 					startActivity(new Intent(context, SetupOverActivity.class));
+					overridePendingTransition(R.anim.next_in_anim, R.anim.next_in_out_anim);
 					finish();
 				} else {
 					ToastUtil.show(context, "安全设置未开启");

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 
 public class SetupActivity extends Activity {
 
@@ -30,7 +31,9 @@ public class SetupActivity extends Activity {
 	 * @param view 下一页按钮
 	 */
 	public void nextPage(View view){
+		
 		startActivity(new Intent(context, Setup2Activity.class));
+		overridePendingTransition(R.anim.next_in_anim, R.anim.next_in_out_anim);
 		finish();
 	}
 	
