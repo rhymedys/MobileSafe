@@ -18,13 +18,15 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
-public class Setup3Activity extends Activity {
+public class Setup3Activity extends BaseSetupActivity {
 
 	private Context context;
 	private EditText et_safenum;
@@ -36,7 +38,9 @@ public class Setup3Activity extends Activity {
 		this.context = this;
 
 		initUI();
+		
 	}
+	
 
 	/**
 	 * 初始化ui布局
@@ -48,35 +52,6 @@ public class Setup3Activity extends Activity {
 		if (!TextUtils.isEmpty(temp)) {
 			et_safenum.setText(temp);
 		}
-
-		findViewById(R.id.btn_SetupNext).setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-				String num = et_safenum.getText().toString().trim();
-				if (!TextUtils.isEmpty(num)) {
-					SpUtils.putString(context, ConstantValue.SAFE_CONTACT_NUM, num);
-					startActivity(new Intent(context, Setup4Activity.class));
-					overridePendingTransition(R.anim.next_in_anim, R.anim.next_in_out_anim);
-					finish();
-				}else{
-					ToastUtil.show(context, "请输入安全号码");
-				}
-
-			}
-		});
-
-		findViewById(R.id.btn_SetupBack).setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-				startActivity(new Intent(context, Setup2Activity.class));
-				overridePendingTransition(R.anim.pre_in_anim, R.anim.pre_in_out_anim);
-				finish();
-			}
-		});
 
 		findViewById(R.id.btn_selectcontact).setOnClickListener(new OnClickListener() {
 
@@ -127,5 +102,29 @@ public class Setup3Activity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+
+	@Override
+	protected void showPrePage() {
+
+		startActivity(new Intent(context, Setup2Activity.class));
+		overridePendingTransition(R.anim.pre_in_anim, R.anim.pre_in_out_anim);
+		finish();
+	}
+
+
+	@Override
+	protected void showNextPage() {
+
+		String num = et_safenum.getText().toString().trim();
+		if (!TextUtils.isEmpty(num)) {
+			SpUtils.putString(context, ConstantValue.SAFE_CONTACT_NUM, num);
+			startActivity(new Intent(context, Setup4Activity.class));
+			overridePendingTransition(R.anim.next_in_anim, R.anim.next_in_out_anim);
+			finish();
+		}else{
+			ToastUtil.show(context, "请输入安全号码");
+		}
 	}
 }
