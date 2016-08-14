@@ -44,6 +44,10 @@ public class Setup3Activity extends Activity {
 	private void initUI() {
 		// TODO 自动生成的方法存根
 		et_safenum = (EditText) findViewById(R.id.et_safenum);
+		String temp = SpUtils.getString(context, ConstantValue.SAFE_CONTACT_NUM, "");
+		if (!TextUtils.isEmpty(temp)) {
+			et_safenum.setText(temp);
+		}
 
 		findViewById(R.id.btn_SetupNext).setOnClickListener(new OnClickListener() {
 
