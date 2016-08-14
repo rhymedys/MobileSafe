@@ -63,6 +63,24 @@ public class Setup4Activity extends BaseSetupActivity {
 				SpUtils.putBoolean(context, ConstantValue.OPEN_SAFE_SECURITY, isChecked);
 			}
 		});
+		
+		findViewById(R.id.btn_SetupNext).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				showNextPage();
+			}
+		});
+		
+		findViewById(R.id.btn_SetupBack).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				showPrePage();
+			}
+		});
 	}
 
 	@Override

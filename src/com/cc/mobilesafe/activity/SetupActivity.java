@@ -38,7 +38,14 @@ public class SetupActivity extends BaseSetupActivity {
 	 */
 	private void initUI() {
 		// TODO 自动生成的方法存根
-
+			findViewById(R.id.btn_SetupNext).setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO 自动生成的方法存根
+					showNextPage();
+				}
+			});
 	}
 	
 	@Override
