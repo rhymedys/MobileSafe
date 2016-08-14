@@ -6,6 +6,7 @@ import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
 import com.cc.mobilesafe.utils.ConstantValue;
 import com.cc.mobilesafe.utils.SpUtils;
+import com.cc.mobilesafe.utils.ToastUtil;
 import com.cc.mobilesafe.view.SettingItemView;
 
 import android.app.Activity;
@@ -67,8 +68,13 @@ public class Setup2Activity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
-				startActivity(new Intent(context,Setup3Activity.class));
-				finish();
+				if (!TextUtils.isEmpty(SpUtils.getString(context, ConstantValue.SIMNUM, ""))) {
+					startActivity(new Intent(context,Setup3Activity.class));
+					finish();
+				}else {
+					ToastUtil.show(context, "请绑定sim卡后继续下一页操作");
+				}
+
 			}
 		});
 		

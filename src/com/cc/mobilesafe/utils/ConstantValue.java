@@ -27,6 +27,11 @@ public class ConstantValue {
 	/**
 	 * SIM卡绑定序列号的的key
 	 */
-	public static final String SIMNUM = null;
+	public static final String SIMNUM = "simnum";
+
+	/**
+	 * 安全联系人 电话号码
+	 */
+	public static final String SAFE_CONTACT_NUM = "safe_contact_num";
 
 }
