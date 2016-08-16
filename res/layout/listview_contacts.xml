@@ -14,7 +14,7 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/tv_Num"
+        android:id="@+id/tv_Oversetup_Num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"

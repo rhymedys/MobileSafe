@@ -56,7 +56,7 @@ public class MyContactlistAdapter extends BaseAdapter {
 		}
 
 		TextView tv_Name = (TextView) view.findViewById(R.id.tv_Name);
-		TextView tv_Num = (TextView) view.findViewById(R.id.tv_Num);
+		TextView tv_Num = (TextView) view.findViewById(R.id.tv_Oversetup_Num);
 		tv_Name.setText(contactlist.get(position).get("phoneName"));
 		tv_Num.setText(contactlist.get(position).get("phoneNum"));
 		

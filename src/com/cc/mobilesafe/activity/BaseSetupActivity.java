@@ -10,6 +10,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+/**
+ * @author Rhymedys
+ *自定义activity 用来 继承相同模块的代码
+ */
 public abstract class BaseSetupActivity extends Activity {
 	protected abstract void showPrePage();
 
@@ -20,7 +24,7 @@ public abstract class BaseSetupActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO 自动生成的方法存根
-		super.onCreate(savedInstanceState);
+		
 		gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
 			@Override
 			public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -36,6 +40,7 @@ public abstract class BaseSetupActivity extends Activity {
 				return super.onFling(e1, e2, velocityX, velocityY);
 			}
 		});
+		super.onCreate(savedInstanceState);
 
 	}
 
