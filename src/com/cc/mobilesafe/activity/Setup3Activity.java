@@ -71,7 +71,6 @@ public class Setup3Activity extends BaseSetupActivity {
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				showNextPage();
-				
 			}
 		});
 		
