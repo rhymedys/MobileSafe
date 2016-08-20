@@ -1,6 +1,7 @@
 package com.cc.mobilesafe.activity;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -52,7 +53,7 @@ import android.widget.Toast;
  */
 public class SplashActivity extends Activity {
 
-	protected static final String TAG = "SplashActivity";	
+	protected static final String TAG = "SplashActivity";
 	/**
 	 * 各类状态码
 	 */
@@ -61,19 +62,19 @@ public class SplashActivity extends Activity {
 	protected static final int URL_ERROR = 102;
 	protected static final int IO_ERROR = 103;
 	protected static final int JSON_ERROR = 104;
-	
+
 	private Context context;
 	private TextView tv_version_name;
 	private String versionName;
 	private int mLocalVersionCode;
-	private  String mDownloadUrl;
+	private String mDownloadUrl;
 	private String versionDes;
 	private RelativeLayout rl_root;
 	private Handler handler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
-			
+
 			switch (msg.what) {
 			case UPDATE_VERSION:
 				showUpdataDialog(msg);
@@ -98,8 +99,6 @@ public class SplashActivity extends Activity {
 				break;
 			}
 		}
-		
-		
 
 	};
 
@@ -110,117 +109,162 @@ public class SplashActivity extends Activity {
 		this.context = this;
 
 		initUI();
-		initDate();
+		initData();
 		initAnimation();
+		initDB();
+
 	}
 
-	
+	/**
+	 * 初始化数据库
+	 */
+	private void initDB() {
+		// TODO 自动生成的方法存根
+		initAddressDB("address.db");
+	}
+
+	/**
+	 * 初始化 address 数据库
+	 * 
+	 * @param dbName
+	 */
+	private void initAddressDB(String dbName) {
+		// TODO 自动生成的方法存根
+		File filesDir = getFilesDir();
+		File file = new File(filesDir, dbName);
+
+		if (file.exists()) {
+			return;
+		} else {
+			InputStream inputStream = null;
+			FileOutputStream fileOutputStream = null;
+			try {
+
+				inputStream = getAssets().open(dbName);
+				fileOutputStream = new FileOutputStream(file);
+				byte[] buffer = new byte[1024];
+				int len = -1;
+				while ((len = inputStream.read(buffer)) != -1) {
+					fileOutputStream.write(buffer, 0, len);
+					fileOutputStream.flush();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (fileOutputStream != null && inputStream != null) {
+					try {
+						fileOutputStream.close();
+						inputStream.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+				}
+
+			}
+		}
+	}
+
 	/**
 	 * 初始化淡入动画
 	 */
 	private void initAnimation() {
-		
-		Animation  animation=AnimationUtils.loadAnimation(context, R.anim.splash_alpha_animation);
-		
+
+		Animation animation = AnimationUtils.loadAnimation(context, R.anim.splash_alpha_animation);
+
 		rl_root = (RelativeLayout) findViewById(R.id.rl_root);
 		rl_root.startAnimation(animation);
-		
+
 	}
 
-
 	/**
-	 *  弹出更新对话框
+	 * 弹出更新对话框
 	 */
 	protected void showUpdataDialog(Message msg) {
-		
+
 		Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle("更新提示");
 		builder.setIcon(R.drawable.ic_launcher);
-		
+
 		Bundle data = msg.getData();
 		versionDes = data.getString("versionDes");
 		mDownloadUrl = data.getString("downloadUrl");
-		
+
 		builder.setMessage(versionDes);
 		builder.setPositiveButton("立马下载", new OnClickListener() {
-			
+
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				
+
 				downloadAPK();
 
 				dialog.dismiss();
 			}
 		});
-		
-		
+
 		builder.setNegativeButton("稍后更新", new OnClickListener() {
-			
+
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				
+
 				enterHome();
 				dialog.dismiss();
 			}
 		});
-		
+
 		builder.setOnCancelListener(new OnCancelListener() {
-			
+
 			@Override
 			public void onCancel(DialogInterface dialog) {
-				
+
 				enterHome();
 				dialog.dismiss();
 			}
 		});
-		
+
 		builder.show();
 	}
 
-
 	protected void downloadAPK() {
-		// 
+		//
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			String path=Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"mobilesafe.apk";
+			String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator
+					+ "mobilesafe.apk";
 			HttpUtils httpUtils = new HttpUtils();
 			httpUtils.download(mDownloadUrl, path, new RequestCallBack<File>() {
-				
+
 				@Override
 				public void onSuccess(ResponseInfo<File> arg0) {
-					// 
+					//
 					File file = arg0.result;
 					Toast.makeText(context, "下载成功", Toast.LENGTH_SHORT).show();
 					installAPK(file);
-					
-					
+
 					LogUtils.i(TAG, "onSuccess");
 				}
-				
+
 				@Override
 				public void onFailure(HttpException arg0, String arg1) {
-					// 
+					//
 					Toast.makeText(context, "下载失败", Toast.LENGTH_SHORT).show();
-					
-					
+
 					LogUtils.i(TAG, "onFailure");
 				}
-				
+
 				@Override
 				public void onStart() {
-					// 
+					//
 					Toast.makeText(context, "开始下载...", Toast.LENGTH_SHORT).show();
 					super.onStart();
-					
-					
-					
+
 					LogUtils.i(TAG, "onStart");
 				}
-				
+
 				@Override
 				public void onLoading(long total, long current, boolean isUploading) {
-					// 
+					//
 					super.onLoading(total, current, isUploading);
-					
+
 					LogUtils.i(TAG, String.valueOf(total));
 					LogUtils.i(TAG, String.valueOf(current));
 				}
@@ -228,24 +272,22 @@ public class SplashActivity extends Activity {
 		}
 	}
 
-
 	/**
 	 * 安装APK
 	 */
 	protected void installAPK(File file) {
-		// 
+		//
 		Intent intent = new Intent("android.intent.action.VIEW");
-		intent.addCategory("android.intent.category.DEFAULT" );
+		intent.addCategory("android.intent.category.DEFAULT");
 		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
 		startActivityForResult(intent, 0);
 	}
-
 
 	/**
 	 * 进入主页
 	 */
 	protected void enterHome() {
-		
+
 		startActivity(new Intent(context, HomeActivity.class));
 		finish();
 	}
@@ -253,18 +295,17 @@ public class SplashActivity extends Activity {
 	/**
 	 * 初始化数据
 	 */
-	private void initDate() {
+	private void initData() {
 		tv_version_name.setText(getVersionName());
 		mLocalVersionCode = getVersionCode();
 		if (SpUtils.getBoolean(context, ConstantValue.OPENUPDATE, false)) {
 			checkVersion();
-		}else {
+		} else {
 			Message msg = Message.obtain();
-			msg.what=ENTER_HOME;
+			msg.what = ENTER_HOME;
 			handler.sendMessageDelayed(msg, 4000);
-			
+
 		}
-		
 
 	}
 
@@ -276,7 +317,7 @@ public class SplashActivity extends Activity {
 	 * 
 	 */
 	private void checkVersion() {
-		
+
 		new Thread(new Runnable() {
 			public void run() {
 				long startTime = System.currentTimeMillis();
@@ -295,39 +336,39 @@ public class SplashActivity extends Activity {
 						LogUtils.i(TAG, streamToString);
 						JSONObject jsonObject = new JSONObject(streamToString);
 						int versionCode = jsonObject.getInt("versionCode");
-						
-						if (versionCode!= mLocalVersionCode) {
-							
+
+						if (versionCode != mLocalVersionCode) {
+
 							Bundle data = new Bundle();
 							data.putString("versionDes", jsonObject.getString("versionDes"));
 							data.putString("versionName", jsonObject.getString("versionName"));
 							data.putString("downloadUrl", jsonObject.getString("downloadUrl"));
 							data.putInt("versionCode", versionCode);
-							
-							msg.what=UPDATE_VERSION;
+
+							msg.what = UPDATE_VERSION;
 							msg.setData(data);
 
-						}else {
-							msg.what=ENTER_HOME;
+						} else {
+							msg.what = ENTER_HOME;
 						}
 
 					}
 				} catch (MalformedURLException e) {
-					
+
 					e.printStackTrace();
-					msg.what=URL_ERROR;
-				}catch (JSONException e) {
-					
+					msg.what = URL_ERROR;
+				} catch (JSONException e) {
+
 					e.printStackTrace();
-					msg.what=JSON_ERROR;
-				}catch (IOException e) {
-					
+					msg.what = JSON_ERROR;
+				} catch (IOException e) {
+
 					e.printStackTrace();
-					msg.what=IO_ERROR;
-				}finally {
+					msg.what = IO_ERROR;
+				} finally {
 					long endTime = System.currentTimeMillis();
-					if (endTime-startTime<4000) {
-						SystemClock.sleep(4000-(endTime-startTime));
+					if (endTime - startTime < 4000) {
+						SystemClock.sleep(4000 - (endTime - startTime));
 					}
 					handler.sendMessage(msg);
 				}
@@ -342,13 +383,13 @@ public class SplashActivity extends Activity {
 	 * @return ！0代表成功
 	 */
 	private int getVersionCode() {
-		
+
 		PackageManager pm = getPackageManager();
 		try {
 			PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);
 			return packageInfo.versionCode;
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 
 		}
@@ -359,13 +400,13 @@ public class SplashActivity extends Activity {
 	 * 获取版本名称 @ return 应用版本名称
 	 */
 	private String getVersionName() {
-		
+
 		PackageManager pm = getPackageManager();
 		try {
 			PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);
 			return packageInfo.versionName;
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 
 		}
@@ -376,15 +417,14 @@ public class SplashActivity extends Activity {
 	 * 初始化 ui
 	 */
 	private void initUI() {
-		
+
 		tv_version_name = (TextView) findViewById(R.id.tv_version_name);
 
 	}
-	
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
+
 		enterHome();
 		super.onActivityResult(requestCode, resultCode, data);
 	}

@@ -121,7 +121,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 
 			break;
 		case 7:
-
+			startActivity(new Intent(context,AToolActivity.class));
 			break;
 		case 8:
 			startActivity(new Intent(context, SettingActivity.class));
