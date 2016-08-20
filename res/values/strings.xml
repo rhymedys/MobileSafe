@@ -15,5 +15,6 @@
     <string name="sample_device_admin_description">一键激活，意见锁屏，一键清楚数据</string>
     <string name="title_activity_atool">AToolActivity</string>
     <string name="title_activity_query_address">QueryAddressActivity</string>
+    <string name="title_activity_toast_location">ToastLocationActivity</string>
 
 </resources>

@@ -24,9 +24,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    
-    
-    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -38,7 +35,7 @@
         receiver 
         receiver   
         receiver 
-        receiver
+        receiver
         -->
         <receiver android:name=".Reciver.BootReciver" >
             <intent-filter>
@@ -69,11 +66,11 @@
         service 
         service   
         service 
-        service
+        service
         -->
-        <service android:name="com.cc.mobilesafe..Service.LocationService" >
+        <service android:name="..Service.LocationService" >
         </service>
-        <service android:name="com.cc.mobilesafe.Service.AddressService" >
+        <service android:name=".Service.AddressService" >
         </service>
 
         <!--
@@ -81,7 +78,7 @@
         activity 
         activity   
         activity 
-        activity
+        activity
         -->
         <activity
             android:name=".activity.SplashActivity"
@@ -129,8 +126,13 @@
             android:label="@string/title_activity_atool" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.activity.QueryAddressActivity"
+            android:name=".activity.QueryAddressActivity"
             android:label="@string/title_activity_query_address" >
+        </activity>
+        <activity
+            android:name="com.cc.mobilesafe.activity.ToastLocationActivity"
+            android:label="@string/title_activity_toast_location" 
+           android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
     </application>
 

@@ -128,6 +128,8 @@ public class AddressService extends Service {
 
 		int intStyle = SpUtils.getInt(getApplicationContext(), ConstantValue.TOAST_STYLE, 0);
 		tv_toast.setBackgroundResource(toastBackgrouds[intStyle]);
+		
+		
 		windowManager.addView(viewToast, params);
 
 	}

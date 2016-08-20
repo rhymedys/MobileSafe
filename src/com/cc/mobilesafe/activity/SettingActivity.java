@@ -31,9 +31,10 @@ public class SettingActivity extends Activity {
 	private Context context;
 	private SettingItemView siv_Update;
 	private SettingItemView siv_locationset;
-	private SettingClickView scv_set_is_location_style;
+	private SettingClickView scv_set_location_style;
 	private String[] styles;
 	private int intStyle;
+	private SettingClickView scv_set_toast_location;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +45,37 @@ public class SettingActivity extends Activity {
 		initUpdate();
 		initSettingShowLocation();
 		initSettingShowLocationStyle();
+		initSettingShowLocationArea();
 	}
 
 	/**
-	 * 设置来电位置显示的的样式
+	 * 设置来电显示的位置
+	 */
+	private void initSettingShowLocationArea() {
+		// TODO 自动生成的方法存根
+		scv_set_toast_location = (SettingClickView) findViewById(R.id.scv_set_toast_location);
+		scv_set_toast_location.setTitle("归属地提示框位置");
+		scv_set_toast_location.setDescription("归属地提示框位置");
+		scv_set_toast_location.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+					startActivity(new Intent(context, ToastLocationActivity.class));
+			}
+		});
+	}
+
+	/**
+	 * 设置来电显示的的样式
 	 */
 	private void initSettingShowLocationStyle() {
 		styles = new String[] { "透明", "橙色", "蓝色", "灰色", "绿色" };
-		scv_set_is_location_style = (SettingClickView) findViewById(R.id.scv_set_is_location_style);
-		scv_set_is_location_style.setTitle("设置归属地显示风格");
+		scv_set_location_style = (SettingClickView) findViewById(R.id.scv_set_toast_style);
+		scv_set_location_style.setTitle("设置归属地显示风格");
 		intStyle = SpUtils.getInt(context, ConstantValue.TOAST_STYLE, 0);
-		scv_set_is_location_style.setDescription(styles[intStyle]);
-		scv_set_is_location_style.setOnClickListener(new OnClickListener() {
+		scv_set_location_style.setDescription(styles[intStyle]);
+		scv_set_location_style.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -84,7 +104,7 @@ public class SettingActivity extends Activity {
 				// TODO 自动生成的方法存根
 
 				SpUtils.putInt(context, ConstantValue.TOAST_STYLE, which);
-				scv_set_is_location_style.setDescription(styles[which]);
+				scv_set_location_style.setDescription(styles[which]);
 				dialog.dismiss();
 			}
 
@@ -102,11 +122,11 @@ public class SettingActivity extends Activity {
 	}
 
 	/**
-	 * 设置是否开启来电位置功能
+	 * 设置是否开启来电显示功能
 	 */
 	private void initSettingShowLocation() {
 		//
-		siv_locationset = (SettingItemView) findViewById(R.id.siv_set_is_location);
+		siv_locationset = (SettingItemView) findViewById(R.id.siv_set_is_toast);
 
 		boolean isRunning = ServiceUtils.isRunning(context, ADDRESS_SERVICE);
 		siv_locationset.setCheck(isRunning);
@@ -125,7 +145,7 @@ public class SettingActivity extends Activity {
 	}
 
 	/**
-	 * 是否开启来电位置显示功能的 这是一个被调用的服务 this is service
+	 * 是否开启来电位置功能的服务     这是一个被调用的服务 this is service
 	 * 
 	 * @param is_setting_show_location
 	 */

@@ -18,23 +18,47 @@
         mobilesafe:deson="自动更新已开启"
         mobilesafe:destitle="自动更新设置" >
     </com.cc.mobilesafe.view.SettingItemView>
-    
+
     <com.cc.mobilesafe.view.SettingItemView
         xmlns:mobilesafe="http://schemas.android.com/apk/res/com.cc.mobilesafe"
-        android:id="@+id/siv_set_is_location"
+        android:id="@+id/siv_set_is_toast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         mobilesafe:desoff="归属地显示已关闭"
         mobilesafe:deson="归属地显示已开启"
         mobilesafe:destitle="电话归属地显示设置" >
     </com.cc.mobilesafe.view.SettingItemView>
-   
+
     <com.cc.mobilesafe.view.SettingClickView
-        android:id="@+id/scv_set_is_location_style"
+        android:id="@+id/scv_set_toast_style"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
     </com.cc.mobilesafe.view.SettingClickView>
-    
-    
-    
+
+    <com.cc.mobilesafe.view.SettingClickView
+        android:id="@+id/scv_set_toast_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.cc.mobilesafe.view.SettingClickView>
+
+    <com.cc.mobilesafe.view.SettingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.cc.mobilesafe"
+        android:id="@+id/siv_set_is_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:desoff="黑名单拦截已关闭"
+        mobilesafe:deson="黑名单拦截已开启"
+        mobilesafe:destitle="黑名单拦截设置" >
+    </com.cc.mobilesafe.view.SettingItemView>
+
+    <com.cc.mobilesafe.view.SettingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.cc.mobilesafe"
+        android:id="@+id/siv_set_is_applock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:desoff="程序锁已关闭"
+        mobilesafe:deson="程序锁已开启"
+        mobilesafe:destitle="程序锁设置" >
+    </com.cc.mobilesafe.view.SettingItemView>
+
 </LinearLayout>

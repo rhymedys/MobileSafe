@@ -44,5 +44,14 @@ public class ConstantValue {
 	 */
 	public static final String TOAST_STYLE = "toast_style";
 
+	/**
+	 * 记录来电提示框的X位置
+	 */
+	public static final String LOCATION_X = "location_x";
+	/**
+	 * 记录来电提示框的Y位置
+	 */
+	public static final String LOCATION_Y = "location_y";
+
 
 }
