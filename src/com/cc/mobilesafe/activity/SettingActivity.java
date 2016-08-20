@@ -54,15 +54,18 @@ public class SettingActivity extends Activity {
 		scv_set_is_location_style = (SettingClickView) findViewById(R.id.scv_set_is_location_style);
 		scv_set_is_location_style.setTitle("设置归属地显示风格");
 		intStyle = SpUtils.getInt(context, ConstantValue.TOAST_STYLE, 0);
-
 		scv_set_is_location_style.setDescription(styles[intStyle]);
-
 		scv_set_is_location_style.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				LogUtils.i(TAG, "scv_set_is_location_style.onClick");
+				
+				//重新读取 intStyle
+				intStyle = SpUtils.getInt(context, ConstantValue.TOAST_STYLE, 0);
+				
+				
 				showToastStyleDialog();
 
 			}

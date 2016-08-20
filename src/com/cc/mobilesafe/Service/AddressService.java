@@ -1,7 +1,9 @@
 package com.cc.mobilesafe.Service;
 
 import com.cc.mobilesafe.R;
+import com.cc.mobilesafe.Utils.ConstantValue;
 import com.cc.mobilesafe.Utils.LogUtils;
+import com.cc.mobilesafe.Utils.SpUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
 import com.cc.mobilesafe.activity.QueryAddressActivity;
 import com.cc.mobilesafe.engine.AddressDao;
@@ -31,12 +33,13 @@ public class AddressService extends Service {
 	private String addressResult;
 	private WindowManager windowManager;
 	private TextView tv_toast;
+	private int[] toastBackgrouds;
 	private Handler handler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
-			// 
-			if ((!TextUtils.isEmpty(addressResult))&&tv_toast!=null) {
+			//
+			if ((!TextUtils.isEmpty(addressResult)) && tv_toast != null) {
 				tv_toast.setText(addressResult);
 			}
 
@@ -54,19 +57,20 @@ public class AddressService extends Service {
 		windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 		LogUtils.i(TAG, "已开启");
 		super.onCreate();
-		
-		 
+
+		toastBackgrouds = new int[] { R.drawable.call_locate_white, R.drawable.call_locate_orange,
+				R.drawable.call_locate_blue, R.drawable.call_locate_gray, R.drawable.call_locate_green };
 	}
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// 
+		//
 		return null;
 	}
 
 	@Override
 	public void onDestroy() {
-		// 
+		//
 		if (myPhoneStateListener != null && telephonyManager != null) {
 			telephonyManager.listen(myPhoneStateListener, PhoneStateListener.LISTEN_NONE);
 		}
@@ -78,7 +82,7 @@ public class AddressService extends Service {
 
 		@Override
 		public void onCallStateChanged(int state, String incomingNumber) {
-			// 
+			//
 			switch (state) {
 			// 摘机状态
 			case TelephonyManager.CALL_STATE_OFFHOOK:
@@ -121,6 +125,9 @@ public class AddressService extends Service {
 
 		viewToast = View.inflate(this, R.layout.toast_view, null);
 		tv_toast = (TextView) viewToast.findViewById(R.id.tv_toast);
+
+		int intStyle = SpUtils.getInt(getApplicationContext(), ConstantValue.TOAST_STYLE, 0);
+		tv_toast.setBackgroundResource(toastBackgrouds[intStyle]);
 		windowManager.addView(viewToast, params);
 
 	}
@@ -131,7 +138,7 @@ public class AddressService extends Service {
 	 * @param incomingNumber
 	 */
 	public void QueryAddress(final String incomingNumber) {
-		// 
+		//
 		new Thread(new Runnable() {
 
 			public void run() {
