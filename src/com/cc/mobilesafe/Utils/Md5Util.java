@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.utils;
+package com.cc.mobilesafe.Utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -26,15 +26,29 @@ public class AToolActivity extends Activity {
 
 		//归属地查询方法
 		initPhoneAddress();
+		//
+		initSmsBackup();
+	}
+
+	private void initSmsBackup() {
+		
+		findViewById(R.id.tv_sms_backup).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				
+			}
+		});
 	}
 
 	private void initPhoneAddress() {
-		// TODO 自动生成的方法存根
+		
 		findViewById(R.id.tv_query_phone_address).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
+				
 				startActivity(new Intent(context, QueryAddressActivity.class));
 			}
 		});

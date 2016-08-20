@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.utils;
+package com.cc.mobilesafe.Utils;
 
 import android.content.Context;
 import android.widget.Toast;

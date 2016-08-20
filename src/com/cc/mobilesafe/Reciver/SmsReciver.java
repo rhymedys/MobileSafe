@@ -5,10 +5,10 @@ import java.io.IOException;
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.Service.LocationService;
-import com.cc.mobilesafe.utils.ConstantValue;
-import com.cc.mobilesafe.utils.Md5Util;
-import com.cc.mobilesafe.utils.SpUtils;
-import com.cc.mobilesafe.utils.ToastUtil;
+import com.cc.mobilesafe.Utils.ConstantValue;
+import com.cc.mobilesafe.Utils.Md5Util;
+import com.cc.mobilesafe.Utils.SpUtils;
+import com.cc.mobilesafe.Utils.ToastUtil;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;

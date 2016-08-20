@@ -6,9 +6,9 @@ import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
-import com.cc.mobilesafe.utils.ConstantValue;
-import com.cc.mobilesafe.utils.SpUtils;
-import com.cc.mobilesafe.utils.ToastUtil;
+import com.cc.mobilesafe.Utils.ConstantValue;
+import com.cc.mobilesafe.Utils.SpUtils;
+import com.cc.mobilesafe.Utils.ToastUtil;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import android.app.Activity;

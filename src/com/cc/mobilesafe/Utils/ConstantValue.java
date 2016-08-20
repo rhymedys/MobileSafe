@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.utils;
+package com.cc.mobilesafe.Utils;
 
 /**
  * @author Rhymedys
@@ -34,6 +34,15 @@ public class ConstantValue {
 	 */
 	public static final String SAFE_CONTACT_NUM = "safe_contact_num";
 
+	/**
+	 * 是否开启安全设置
+	 */
 	public static final String OPEN_SAFE_SECURITY = "open_safe_security";
+
+	/**
+	 * toaststyle的设置记录
+	 */
+	public static final String TOAST_STYLE = "toast_style";
+
 
 }

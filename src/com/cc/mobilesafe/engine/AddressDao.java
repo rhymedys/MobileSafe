@@ -1,7 +1,7 @@
 package com.cc.mobilesafe.engine;
 
 import com.cc.mobilesafe.R.id;
-import com.cc.mobilesafe.utils.LogUtils;
+import com.cc.mobilesafe.Utils.LogUtils;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

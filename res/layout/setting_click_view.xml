@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout style="@style/SettingActivity_RelativeStyle" >
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/SettingActivity_TextView"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tv_des"
+            style="@style/SettingActivity_SubTextView"
+            android:layout_below="@id/tv_title"
+            android:text="" />
+
+        <ImageView
+            android:id="@+id/iv_image"
+            style="@style/SettingActivity_CheckBox"
+            android:background="@drawable/jiantou1_pressed"
+            />
+
+        <View
+            style="@style/SettingActivity_View"
+            android:layout_below="@id/tv_des" />
+    </RelativeLayout>
+
+</RelativeLayout>

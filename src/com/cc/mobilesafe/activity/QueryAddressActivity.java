@@ -2,8 +2,8 @@ package com.cc.mobilesafe.activity;
 
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.layout;
+import com.cc.mobilesafe.Utils.ToastUtil;
 import com.cc.mobilesafe.engine.AddressDao;
-import com.cc.mobilesafe.utils.ToastUtil;
 
 import android.R.string;
 import android.app.Activity;

@@ -8,11 +8,11 @@ import com.cc.mobilesafe.R.drawable;
 import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
+import com.cc.mobilesafe.Utils.ConstantValue;
+import com.cc.mobilesafe.Utils.Md5Util;
+import com.cc.mobilesafe.Utils.SpUtils;
+import com.cc.mobilesafe.Utils.ToastUtil;
 import com.cc.mobilesafe.adapter.HomeGridViewAdapter;
-import com.cc.mobilesafe.utils.ConstantValue;
-import com.cc.mobilesafe.utils.Md5Util;
-import com.cc.mobilesafe.utils.SpUtils;
-import com.cc.mobilesafe.utils.ToastUtil;
 import com.lidroid.xutils.view.annotation.event.OnChildClick;
 
 import android.app.Activity;

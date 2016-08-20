@@ -8,8 +8,8 @@ import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
+import com.cc.mobilesafe.Utils.ToastUtil;
 import com.cc.mobilesafe.adapter.MyContactlistAdapter;
-import com.cc.mobilesafe.utils.ToastUtil;
 
 import android.R.string;
 import android.app.Activity;

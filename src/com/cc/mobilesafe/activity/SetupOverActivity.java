@@ -4,9 +4,9 @@ import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
-import com.cc.mobilesafe.utils.ConstantValue;
-import com.cc.mobilesafe.utils.LogUtils;
-import com.cc.mobilesafe.utils.SpUtils;
+import com.cc.mobilesafe.Utils.ConstantValue;
+import com.cc.mobilesafe.Utils.LogUtils;
+import com.cc.mobilesafe.Utils.SpUtils;
 
 import android.app.Activity;
 import android.content.Context;

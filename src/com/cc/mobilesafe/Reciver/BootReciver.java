@@ -1,7 +1,7 @@
 package com.cc.mobilesafe.Reciver;
 
-import com.cc.mobilesafe.utils.ConstantValue;
-import com.cc.mobilesafe.utils.SpUtils;
+import com.cc.mobilesafe.Utils.ConstantValue;
+import com.cc.mobilesafe.Utils.SpUtils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.utils;
+package com.cc.mobilesafe.Utils;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;

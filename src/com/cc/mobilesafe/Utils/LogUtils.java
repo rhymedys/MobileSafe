@@ -1,5 +1,5 @@
 
-package com.cc.mobilesafe.utils;
+package com.cc.mobilesafe.Utils;
 
 import android.os.Environment;
 import android.util.Log;
