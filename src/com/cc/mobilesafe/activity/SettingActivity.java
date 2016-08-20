@@ -64,8 +64,7 @@ public class SettingActivity extends Activity {
 				// TODO 自动生成的方法存根
 				LogUtils.i(TAG, "scv_set_is_location_style.onClick");
 				showToastStyleDialog();
-				SpUtils.putInt(context, ConstantValue.TOAST_STYLE, intStyle);
-				scv_set_is_location_style.setDescription(styles[intStyle]);
+
 			}
 		});
 	}
@@ -80,19 +79,21 @@ public class SettingActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO 自动生成的方法存根
-				intStyle = which;
+
+				SpUtils.putInt(context, ConstantValue.TOAST_STYLE, which);
+				scv_set_is_location_style.setDescription(styles[which]);
 				dialog.dismiss();
 			}
 
 		});
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO 自动生成的方法存根
 				dialog.dismiss();
 			}
-			
+
 		});
 		builder.show();
 	}
