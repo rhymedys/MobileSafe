@@ -7,6 +7,7 @@ import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.Adapter.BlackNumAdapter;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.Bean.BlackNumberInfoBean;
+import com.cc.mobilesafe.Utils.LogUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
 import com.cc.mobilesafe.db.Dao.BlackNumberDao;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -23,6 +24,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -35,8 +38,20 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class BlackNumActivity extends Activity {
 
+	/**
+	 * 创建一个ADAPTER标志
+	 */
 	protected static final int NEW_ADAPTER = 0;
+	/**
+	 * 刷新ADAPTER标志
+	 */
 	protected static final int REFRESH_ADAPTER = 1;
+	/**
+	 * 获取数据库数据数量的标志
+	 */
+	protected static final int LOAD_DATA_COUNT = 2;
+	protected static final String TAG = null;
+
 	private Context context;
 	private ListView lv_blacknumber;
 	private Button btn_add;
@@ -44,6 +59,16 @@ public class BlackNumActivity extends Activity {
 	private int mode = 0;
 	private BlackNumAdapter blackNumAdapter;
 	private ArrayList<BlackNumberInfoBean> listAll;
+	private int intDataCount;
+
+	private EditText et_phone;
+	private RadioGroup rg_mode;
+	private ImageView iv_delete;
+	/**
+	 * 防止重复加载的变量 正在加载 为true 加载完毕为false
+	 */
+	private boolean isLoad = false;
+
 	private Handler handler = new Handler() {
 
 		@Override
@@ -51,14 +76,22 @@ public class BlackNumActivity extends Activity {
 
 			switch (msg.what) {
 			case NEW_ADAPTER:
-				blackNumAdapter = new BlackNumAdapter(context, listAll,handler);
+				blackNumAdapter = new BlackNumAdapter(context, listAll, handler);
 				lv_blacknumber.setAdapter(blackNumAdapter);
-				
+
 				break;
 			case REFRESH_ADAPTER:
-				if (blackNumAdapter!=null) {
+				if (blackNumAdapter != null) {
 					blackNumAdapter.notifyDataSetChanged();
+					LogUtils.i(TAG, "REFRESH_ADAPTER="+REFRESH_ADAPTER);
 				}
+				break;
+			case LOAD_DATA_COUNT:
+				if (blackNumberDao != null) {
+					intDataCount = blackNumberDao.getCount();
+					LogUtils.i(TAG, "LOAD_DATA_COUNT="+intDataCount);
+				}
+
 				break;
 
 			default:
@@ -68,9 +101,6 @@ public class BlackNumActivity extends Activity {
 		}
 
 	};
-	private EditText et_phone;
-	private RadioGroup rg_mode;
-	private ImageView iv_delete;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,19 +112,26 @@ public class BlackNumActivity extends Activity {
 		initData();
 	}
 
+	/**
+	 * 初始化 初次加载数据
+	 */
 	private void initData() {
-		// TODO 自动生成的方法存根
+		// 第一次加载数据从位置0开始
 		new Thread(new Runnable() {
-
 			public void run() {
 				blackNumberDao = BlackNumberDao.getInstance(context);
-				listAll = blackNumberDao.queryAll();
+
+				listAll = blackNumberDao.query(0);
 				handler.sendEmptyMessage(0);
+				handler.sendEmptyMessage(LOAD_DATA_COUNT);
 			}
 		}).start();
 
 	}
 
+	/**
+	 * 
+	 */
 	private void initUI() {
 		lv_blacknumber = (ListView) findViewById(R.id.lv_blacknumber);
 		btn_add = (Button) findViewById(R.id.btn_add);
@@ -105,6 +142,40 @@ public class BlackNumActivity extends Activity {
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				showAddDialog();
+			}
+		});
+
+		// 监听list的滑动状态
+		lv_blacknumber.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				// TODO 自动生成的方法存根
+				if (listAll != null) {
+					if (scrollState == OnScrollListener.SCROLL_STATE_IDLE
+							&& (lv_blacknumber.getLastVisiblePosition() >= listAll.size() - 1) && !isLoad) {
+						if (listAll.size() < intDataCount) {
+							new Thread(new Runnable() {
+								public void run() {
+									blackNumberDao = BlackNumberDao.getInstance(context);
+									ArrayList<BlackNumberInfoBean> moreList = blackNumberDao.query(listAll.size());
+									listAll.addAll(moreList);
+									handler.sendEmptyMessage(REFRESH_ADAPTER);
+								}
+							}).start();
+						}else {
+							
+						}
+
+					}
+				}
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+				// TODO 自动生成的方法存根
+
 			}
 		});
 
@@ -156,9 +227,9 @@ public class BlackNumActivity extends Activity {
 					bean.mode = mode;
 					bean.phone = phone;
 					listAll.add(0, bean);
-					
+
 					handler.sendEmptyMessage(REFRESH_ADAPTER);
-					
+					handler.sendEmptyMessage(LOAD_DATA_COUNT);
 					dialog.dismiss();
 				} else {
 					ToastUtil.show(context, "请输入正确的电话号码");

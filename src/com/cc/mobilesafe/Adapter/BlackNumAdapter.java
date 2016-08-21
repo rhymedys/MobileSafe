@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -21,13 +22,20 @@ public class BlackNumAdapter extends BaseAdapter implements ListAdapter {
 	protected static final int REFRESH_ADAPTER = 1;
 	private Context context;
 	private ArrayList<BlackNumberInfoBean> list;
-	private String [] type=new String[]{"只拦截短信","只拦截电话","拦截所有"};
+	private String[] type = new String[] { "只拦截短信", "只拦截电话", "拦截所有" };
 	private Handler handler;
 
-	public BlackNumAdapter(Context context, ArrayList<BlackNumberInfoBean> list,Handler handler) {
+	static class BlackNumberListViewHolder {
+
+		TextView tv_phone;
+		TextView tv_mode;
+		ImageView iv_delete;
+	}
+
+	public BlackNumAdapter(Context context, ArrayList<BlackNumberInfoBean> list, Handler handler) {
 		this.context = context;
 		this.list = list;
-		this.handler=handler;
+		this.handler = handler;
 	}
 
 	@Override
@@ -51,39 +59,43 @@ public class BlackNumAdapter extends BaseAdapter implements ListAdapter {
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		// TODO 自动生成的方法存根
-		View view;
+		BlackNumberListViewHolder holder = null;
 		if (convertView != null) {
-			view = convertView;
+			holder = (BlackNumberListViewHolder) convertView.getTag();
 		} else {
-			view = View.inflate(context, R.layout.listview_blacknumber_item, null);
+			convertView = View.inflate(context, R.layout.listview_blacknumber_item, null);
+			holder = new BlackNumberListViewHolder();
+			holder.tv_phone = (TextView) convertView.findViewById(R.id.tv_phone);
+			holder.tv_mode = (TextView) convertView.findViewById(R.id.tv_mode);
+			holder.iv_delete = (ImageView) convertView.findViewById(R.id.iv_delete);
+			convertView.setTag(holder);
 		}
-		TextView tv_phone = (TextView) view.findViewById(R.id.tv_phone);
-		TextView tv_mode = (TextView) view.findViewById(R.id.tv_mode);
-		 view.findViewById(R.id.iv_delete).setOnClickListener(new OnClickListener() {
-			
+		// TextView tv_phone = (TextView) view.findViewById(R.id.tv_phone);
+		// TextView tv_mode = (TextView) view.findViewById(R.id.tv_mode);
+		holder.iv_delete.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
-				
-				BlackNumberDao blackNumberDao = BlackNumberDao.getInstance(context);			
+
+				BlackNumberDao blackNumberDao = BlackNumberDao.getInstance(context);
 				blackNumberDao.delete(list.get(position).phone);
-				
+
 				list.remove(position);
-				
+
 				handler.sendEmptyMessage(REFRESH_ADAPTER);
-				
-				
+
 			}
 		});
 
-		
-		String mode=type[list.get(position).mode];
-		tv_mode.setText(mode);
-		
-		tv_phone.setText(list.get(position).phone);
-		
-		
-		return view;
+		String mode = type[list.get(position).mode];
+		holder.tv_mode.setText(mode);
+
+		holder.tv_phone.setText(list.get(position).phone);
+
+		return convertView;
 	}
+	
+	
 
 }

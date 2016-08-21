@@ -74,26 +74,66 @@ public class BlackNumberDao {
 		db.update(DB_NAME, values, "phone=?", new String[] { phone });
 		db.close();
 	}
-	
-	
+
 	/**
-	 * 查询全部
-	 *  ArrayList<BlackNumberInfoBean> 类型
+	 * 查询全部 ArrayList<BlackNumberInfoBean> 类型
 	 */
-	public ArrayList<BlackNumberInfoBean> queryAll()
-	{
+	public ArrayList<BlackNumberInfoBean> queryAll() {
 		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
-		Cursor query = db.query(DB_NAME, new String[]{"phone","mode"},null, null, null, null, "_id desc");
+		Cursor query = db.query(DB_NAME, new String[] { "phone", "mode" }, null, null, null, null, "_id desc");
 		ArrayList<BlackNumberInfoBean> list = new ArrayList<BlackNumberInfoBean>();
-		while(query.moveToNext()){
+		while (query.moveToNext()) {
 			BlackNumberInfoBean bean = new BlackNumberInfoBean();
-			bean.phone=query.getString(query.getColumnIndex("phone"));
-			bean.mode=query.getInt(query.getColumnIndex("mode"));
+			bean.phone = query.getString(query.getColumnIndex("phone"));
+			bean.mode = query.getInt(query.getColumnIndex("mode"));
 			list.add(bean);
 		}
 		query.close();
 		db.close();
 		return list;
+	}
+
+	/**
+	 * 查询指定位置开始的20条数据
+	 * 
+	 * @param index
+	 *            开始查询的索引
+	 * @return
+	 */
+	public ArrayList<BlackNumberInfoBean> query(int index) {
+
+		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
+		ArrayList<BlackNumberInfoBean> list = new ArrayList<BlackNumberInfoBean>();
+		Cursor rawQuery = db.rawQuery("select * from blacknumber order by _id desc limit ?,20",
+				new String[] { String.valueOf(index) });
+		while (rawQuery.moveToNext()) {
+			BlackNumberInfoBean bean = new BlackNumberInfoBean();
+			bean.phone = rawQuery.getString(rawQuery.getColumnIndex("phone"));
+			bean.mode = rawQuery.getInt(rawQuery.getColumnIndex("mode"));
+			list.add(bean);
+
+		}
+		db.close();
+		return list;
+	}
+
+	/**
+	 * 获取数据库里面数据数量
+	 * @return  数量
+	 */
+	public int getCount() {
+
+		int count = 0;
+		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
+		ArrayList<BlackNumberInfoBean> list = new ArrayList<BlackNumberInfoBean>();
+		Cursor rawQuery = db.rawQuery("select count( *)  from blacknumber", null);
+		if (rawQuery.moveToNext()) {
+			count = rawQuery.getInt(0);
+		}
+		rawQuery.close();
+		db.close();
+		return count;
+
 	}
 
 }
