@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/TitleStyle"
+        android:background="#fcc"
+        android:text="添加黑名单号码" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:hint="请输入拦截号码" />
+
+    <RadioGroup
+        android:id="@+id/rg_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- "只拦截短信","只拦截电话","拦截所有" -->
+
+        <RadioButton
+            android:id="@+id/rb_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="只拦截短信" />
+
+        <RadioButton
+            android:id="@+id/rb_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="只拦截电话" />
+
+        <RadioButton
+            android:id="@+id/rb_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="拦截短信和电话" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="确认"
+           android:layout_marginRight="2dp"
+           android:background="@drawable/selector_btn_blacknumber_dialog_bg" />
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="2dp"
+            android:text="取消"
+           android:background="@drawable/selector_btn_blacknumber_dialog_bg" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -38,7 +38,7 @@ public class BlackNumberDao {
 	 * @param phone
 	 *            拦截的电话号码
 	 * @param mode
-	 *            拦截类型（1.短信 2.电话3.拦截所有）
+	 *            拦截类型（0.短信 1.电话2.拦截所有）
 	 */
 	public void insert(String phone, int mode) {
 		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
