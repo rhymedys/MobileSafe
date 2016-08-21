@@ -16,14 +16,14 @@ public class BlackNumberOpenHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO 自动生成的方法存根
-		db.execSQL("CREATE TABLE blacknumber(_id integer PRIMARY KEY autoincrement,phone varchar(20),mode varchar(5))");
+		db.execSQL("CREATE TABLE blacknumber(_id integer PRIMARY KEY autoincrement,phone varchar(20),mode int)");
 		
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO 自动生成的方法存根
-
+		
 	}
 
 }

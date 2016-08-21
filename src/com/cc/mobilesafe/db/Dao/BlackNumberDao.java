@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.cc.mobilesafe.Bean.BlackNumberInfoBean;
 import com.cc.mobilesafe.db.BlackNumberOpenHelper;
 
+import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -39,7 +40,7 @@ public class BlackNumberDao {
 	 * @param mode
 	 *            拦截类型（1.短信 2.电话3.拦截所有）
 	 */
-	public void insert(String phone, String mode) {
+	public void insert(String phone, int mode) {
 		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("phone", phone);
@@ -66,7 +67,7 @@ public class BlackNumberDao {
 	 * @param mode
 	 *            要更新为的模式
 	 */
-	public void update(String phone, String mode) {
+	public void update(String phone, int mode) {
 		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("mode", mode);
@@ -87,7 +88,7 @@ public class BlackNumberDao {
 		while(query.moveToNext()){
 			BlackNumberInfoBean bean = new BlackNumberInfoBean();
 			bean.phone=query.getString(query.getColumnIndex("phone"));
-			bean.mode=query.getString(query.getColumnIndex("mode"));
+			bean.mode=query.getInt(query.getColumnIndex("mode"));
 			list.add(bean);
 		}
 		query.close();
