@@ -119,7 +119,7 @@ public class SplashActivity extends Activity {
 	 * 初始化数据库
 	 */
 	private void initDB() {
-		// TODO 自动生成的方法存根
+		// 
 		initAddressDB("address.db");
 	}
 
@@ -129,7 +129,7 @@ public class SplashActivity extends Activity {
 	 * @param dbName
 	 */
 	private void initAddressDB(String dbName) {
-		// TODO 自动生成的方法存根
+		// 
 		File filesDir = getFilesDir();
 		File file = new File(filesDir, dbName);
 

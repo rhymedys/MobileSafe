@@ -46,6 +46,7 @@ public class SettingActivity extends Activity {
 		initSettingShowLocation();
 		initSettingShowLocationStyle();
 		initSettingShowLocationArea();
+		
 	}
 
 	/**

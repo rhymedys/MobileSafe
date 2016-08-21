@@ -103,7 +103,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 			showDialog();
 			break;
 		case 1:
-
+			startActivity(new Intent(context,BlackNumActivity.class));
 			break;
 		case 2:
 

@@ -26,7 +26,6 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -38,7 +37,7 @@
         receiver 
         receiver   
         receiver 
-        receiver
+        receiver
         -->
         <receiver android:name=".Reciver.BootReciver" >
             <intent-filter>
@@ -69,7 +68,7 @@
         service 
         service   
         service 
-        service
+        service
         -->
         <service android:name=".Service.LocationService" >
         </service>
@@ -83,7 +82,7 @@
         activity 
         activity   
         activity 
-        activity
+        activity
         -->
         <activity
             android:name=".Activity.SplashActivity"
@@ -140,9 +139,13 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.RocketBackgroudActivity"
+            android:name=".Activity.RocketBackgroudActivity"
             android:label="@string/title_activity_rocket_backgroud"
-             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.cc.mobilesafe.Activity.BlackNumActivity"
+            android:label="@string/title_activity_black_num" >
         </activity>
     </application>
 
