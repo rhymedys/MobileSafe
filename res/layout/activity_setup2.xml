@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cc.mobilesafe.activity.SetupOverActivity" >
+    tools:context="com.cc.mobilesafe.Activity.SetupOverActivity" >
 
     <TextView
         style="@style/TitleStyle"
@@ -38,7 +38,7 @@
         android:textColor="#000"
         android:textSize="18sp" />
 
-    <com.cc.mobilesafe.view.SettingItemView
+    <com.cc.mobilesafe.View.SettingItemView
         xmlns:mobilesafe="http://schemas.android.com/apk/res/com.cc.mobilesafe"
         android:id="@+id/siv_sim_bound"
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
         mobilesafe:desoff="点击绑定sim卡"
         mobilesafe:deson="sim卡已绑定"
         mobilesafe:destitle="sim卡未绑定" >
-    </com.cc.mobilesafe.view.SettingItemView>
+    </com.cc.mobilesafe.View.SettingItemView>
 
     <LinearLayout
         android:layout_width="match_parent"

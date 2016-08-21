@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.activity;
+package com.cc.mobilesafe.Activity;
 
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.id;
@@ -9,8 +9,8 @@ import com.cc.mobilesafe.Utils.ConstantValue;
 import com.cc.mobilesafe.Utils.LogUtils;
 import com.cc.mobilesafe.Utils.ServiceUtils;
 import com.cc.mobilesafe.Utils.SpUtils;
-import com.cc.mobilesafe.view.SettingClickView;
-import com.cc.mobilesafe.view.SettingItemView;
+import com.cc.mobilesafe.View.SettingClickView;
+import com.cc.mobilesafe.View.SettingItemView;
 
 import android.app.Activity;
 import android.app.AlertDialog;

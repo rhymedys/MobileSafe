@@ -1,9 +1,10 @@
-package com.cc.mobilesafe.activity;
+package com.cc.mobilesafe.Activity;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 
 import com.cc.mobilesafe.R;
+import com.cc.mobilesafe.Adapter.HomeGridViewAdapter;
 import com.cc.mobilesafe.R.drawable;
 import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
@@ -12,7 +13,6 @@ import com.cc.mobilesafe.Utils.ConstantValue;
 import com.cc.mobilesafe.Utils.Md5Util;
 import com.cc.mobilesafe.Utils.SpUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
-import com.cc.mobilesafe.adapter.HomeGridViewAdapter;
 import com.lidroid.xutils.view.annotation.event.OnChildClick;
 
 import android.app.Activity;

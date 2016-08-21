@@ -1,15 +1,15 @@
-package com.cc.mobilesafe.activity;
+package com.cc.mobilesafe.Activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.cc.mobilesafe.R;
+import com.cc.mobilesafe.Adapter.MyContactlistAdapter;
 import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
 import com.cc.mobilesafe.Utils.ToastUtil;
-import com.cc.mobilesafe.adapter.MyContactlistAdapter;
 
 import android.R.string;
 import android.app.Activity;

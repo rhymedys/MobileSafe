@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/launcher_bg"
     android:id="@+id/rl_root"
-    tools:context="com.cc.mobilesafe.activity.SplashActivity" >
+    tools:context="com.cc.mobilesafe.Activity.SplashActivity" >
 
     <TextView
         android:id="@+id/tv_version_name"

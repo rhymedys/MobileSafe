@@ -1,12 +1,12 @@
 package com.cc.mobilesafe.Service;
 
 import com.cc.mobilesafe.R;
+import com.cc.mobilesafe.Activity.QueryAddressActivity;
+import com.cc.mobilesafe.Engine.AddressDao;
 import com.cc.mobilesafe.Utils.ConstantValue;
 import com.cc.mobilesafe.Utils.LogUtils;
 import com.cc.mobilesafe.Utils.SpUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
-import com.cc.mobilesafe.activity.QueryAddressActivity;
-import com.cc.mobilesafe.engine.AddressDao;
 
 import android.app.Service;
 import android.content.Intent;

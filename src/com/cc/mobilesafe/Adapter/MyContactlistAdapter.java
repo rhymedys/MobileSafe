@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.adapter;
+package com.cc.mobilesafe.Adapter;
 
 import java.util.HashMap;
 import java.util.List;

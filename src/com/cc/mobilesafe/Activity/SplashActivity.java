@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.activity;
+package com.cc.mobilesafe.Activity;
 
 import java.io.File;
 import java.io.FileOutputStream;

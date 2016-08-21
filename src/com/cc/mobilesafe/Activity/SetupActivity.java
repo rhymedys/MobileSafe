@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.activity;
+package com.cc.mobilesafe.Activity;
 
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.id;

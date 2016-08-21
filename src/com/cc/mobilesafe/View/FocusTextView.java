@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.view;
+package com.cc.mobilesafe.View;
 
 import android.content.Context;
 import android.util.AttributeSet;

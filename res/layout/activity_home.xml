@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cc.mobilesafe.activity.HomeActivity" >
+    tools:context="com.cc.mobilesafe.Activity.HomeActivity" >
 
     <TextView
         android:id="@+id/tv_home_Title"
         style="@style/TitleStyle"
         android:text="功能列表" />
 
-    <com.cc.mobilesafe.view.FocusTextView
+    <com.cc.mobilesafe.View.FocusTextView
         android:id="@+id/scoll_Text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

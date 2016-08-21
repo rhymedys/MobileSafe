@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.activity;
+package com.cc.mobilesafe.Activity;
 
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.id;
@@ -7,7 +7,7 @@ import com.cc.mobilesafe.R.menu;
 import com.cc.mobilesafe.Utils.ConstantValue;
 import com.cc.mobilesafe.Utils.SpUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
-import com.cc.mobilesafe.view.SettingItemView;
+import com.cc.mobilesafe.View.SettingItemView;
 
 import android.app.Activity;
 import android.content.Context;

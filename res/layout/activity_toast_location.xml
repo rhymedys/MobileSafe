@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#accc"
-    tools:context="com.cc.mobilesafe.activity.ToastLocationActivity" >
+    tools:context="com.cc.mobilesafe.Activity.ToastLocationActivity" >
 
     <ImageView
         android:id="@+id/iv_drag"

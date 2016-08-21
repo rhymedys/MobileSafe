@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.view;
+package com.cc.mobilesafe.View;
 
 import com.cc.mobilesafe.R;
 

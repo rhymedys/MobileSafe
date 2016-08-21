@@ -1,4 +1,4 @@
-package com.cc.mobilesafe.adapter;
+package com.cc.mobilesafe.Adapter;
 
 import com.cc.mobilesafe.R;
 
