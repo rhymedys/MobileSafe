@@ -35,7 +35,7 @@
         receiver 
         receiver   
         receiver 
-        receiver
+        receiver
         -->
         <receiver android:name=".Reciver.BootReciver" >
             <intent-filter>
@@ -66,11 +66,13 @@
         service 
         service   
         service 
-        service
+        service
         -->
-        <service android:name="..Service.LocationService" >
+        <service android:name=".Service.LocationService" >
         </service>
         <service android:name=".Service.AddressService" >
+        </service>
+        <service android:name=".Service.RocketService" >
         </service>
 
         <!--
@@ -78,10 +80,10 @@
         activity 
         activity   
         activity 
-        activity
+        activity
         -->
         <activity
-            android:name="com.cc.mobilesafe.Activity.SplashActivity"
+            android:name=".Activity.SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -90,49 +92,54 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.HomeActivity"
+            android:name=".Activity.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.SettingActivity"
+            android:name=".Activity.SettingActivity"
             android:label="@string/title_activity_setting" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.SetupOverActivity"
+            android:name=".Activity.SetupOverActivity"
             android:label="@string/title_activity_setup_over" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.SetupActivity"
+            android:name=".Activity.SetupActivity"
             android:label="@string/title_activity_setup" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.Setup2Activity"
+            android:name=".Activity.Setup2Activity"
             android:label="@string/title_activity_setup2" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.Setup3Activity"
+            android:name=".Activity.Setup3Activity"
             android:label="@string/title_activity_setup3" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.Setup4Activity"
+            android:name=".Activity.Setup4Activity"
             android:label="@string/title_activity_setup4" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.ContactListActivity"
+            android:name=".Activity.ContactListActivity"
             android:label="@string/title_activity_contact_list" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.AToolActivity"
+            android:name=".Activity.AToolActivity"
             android:label="@string/title_activity_atool" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.QueryAddressActivity"
+            android:name=".Activity.QueryAddressActivity"
             android:label="@string/title_activity_query_address" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.ToastLocationActivity"
-            android:label="@string/title_activity_toast_location" 
-           android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            android:name=".Activity.ToastLocationActivity"
+            android:label="@string/title_activity_toast_location"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.cc.mobilesafe.Activity.RocketBackgroudActivity"
+            android:label="@string/title_activity_rocket_backgroud"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
     </application>
 

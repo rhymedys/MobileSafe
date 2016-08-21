@@ -47,11 +47,17 @@ public class ConstantValue {
 	/**
 	 * 记录来电提示框的X位置
 	 */
-	public static final String LOCATION_X = "location_x";
+	public static final String TOAST_LOCATION_X = "toast_location_x";
 	/**
 	 * 记录来电提示框的Y位置
 	 */
-	public static final String LOCATION_Y = "location_y";
+	public static final String TOAST_LOCATION_Y = "toast_location_y";
+
+	/**
+	 * 记录火箭的位置
+	 */
+	public static final String ROCKET_LOCATION_X = "rocket_location_x";
+	public static final String ROCKET_LOCATION_Y = "rocket_location_y";
 
 
 }

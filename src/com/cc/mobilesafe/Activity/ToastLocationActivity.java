@@ -57,8 +57,8 @@ public class ToastLocationActivity extends Activity {
 		screenHeight = windowManager.getDefaultDisplay().getHeight();
 
 		// 回显
-		int locationX = SpUtils.getInt(context, ConstantValue.LOCATION_X, 0);
-		int locationY = SpUtils.getInt(context, ConstantValue.LOCATION_Y, 0);
+		int locationX = SpUtils.getInt(context, ConstantValue.TOAST_LOCATION_X, 0);
+		int locationY = SpUtils.getInt(context, ConstantValue.TOAST_LOCATION_Y, 0);
 
 		LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
 				RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -89,8 +89,8 @@ public class ToastLocationActivity extends Activity {
 					
 					
 					//存储移动后的位置
-					SpUtils.putInt(context, ConstantValue.LOCATION_X, iv_drag.getLeft());
-					SpUtils.putInt(context, ConstantValue.LOCATION_Y, iv_drag.getTop());
+					SpUtils.putInt(context, ConstantValue.TOAST_LOCATION_X, iv_drag.getLeft());
+					SpUtils.putInt(context, ConstantValue.TOAST_LOCATION_Y, iv_drag.getTop());
 					
 					btnVisible(iv_drag.getHeight());
 					
@@ -148,8 +148,8 @@ public class ToastLocationActivity extends Activity {
 					
 					break;
 				case MotionEvent.ACTION_UP:
-					SpUtils.putInt(context, ConstantValue.LOCATION_X, iv_drag.getLeft());
-					SpUtils.putInt(context, ConstantValue.LOCATION_Y, iv_drag.getTop());
+					SpUtils.putInt(context, ConstantValue.TOAST_LOCATION_X, iv_drag.getLeft());
+					SpUtils.putInt(context, ConstantValue.TOAST_LOCATION_Y, iv_drag.getTop());
 
 					break;
 

@@ -178,8 +178,8 @@ public class AddressService extends Service {
 					if ( params.y < 0 ) {
 						params.y=0;
 					}
-					if ( params.y+tv_toast.getHeight() > screenHeight) {
-						params.y=screenHeight-tv_toast.getHeight();
+					if ( params.y+tv_toast.getHeight() > screenHeight-22) {
+						params.y=screenHeight-tv_toast.getHeight()-22;
 					}
 
 
@@ -189,8 +189,8 @@ public class AddressService extends Service {
 
 					break;
 				case MotionEvent.ACTION_UP:
-					SpUtils.putInt(getApplicationContext(), ConstantValue.LOCATION_X, params.x);
-					SpUtils.putInt(getApplicationContext(), ConstantValue.LOCATION_Y, params.y);
+					SpUtils.putInt(getApplicationContext(), ConstantValue.TOAST_LOCATION_X, params.x);
+					SpUtils.putInt(getApplicationContext(), ConstantValue.TOAST_LOCATION_Y, params.y);
 					break;
 
 				default:
@@ -203,8 +203,8 @@ public class AddressService extends Service {
 		});
 
 		// 设置位置 params.x为左上角x的位置
-		int location_x = SpUtils.getInt(getApplicationContext(), ConstantValue.LOCATION_X, 0);
-		int location_y = SpUtils.getInt(getApplicationContext(), ConstantValue.LOCATION_Y, 0);
+		int location_x = SpUtils.getInt(getApplicationContext(), ConstantValue.TOAST_LOCATION_X, 0);
+		int location_y = SpUtils.getInt(getApplicationContext(), ConstantValue.TOAST_LOCATION_Y, 0);
 		params.x = location_x;
 		params.y = location_y;
 
