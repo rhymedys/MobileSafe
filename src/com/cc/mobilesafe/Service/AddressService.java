@@ -20,8 +20,10 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.RelativeLayout.LayoutParams;
 
 public class AddressService extends Service {
 
@@ -122,10 +124,18 @@ public class AddressService extends Service {
 		params.setTitle("Toast");
 		params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 		params.gravity = Gravity.LEFT + Gravity.TOP;
+		
 
 		viewToast = View.inflate(this, R.layout.toast_view, null);
 		tv_toast = (TextView) viewToast.findViewById(R.id.tv_toast);
-
+	
+		//设置位置  params.x为左上角x的位置
+		int location_x = SpUtils.getInt(getApplicationContext(), ConstantValue.LOCATION_X, 0);
+		int location_y = SpUtils.getInt(getApplicationContext(), ConstantValue.LOCATION_Y, 0);
+		params.x=location_x;
+		params.y=location_y;
+		
+		//设置风格
 		int intStyle = SpUtils.getInt(getApplicationContext(), ConstantValue.TOAST_STYLE, 0);
 		tv_toast.setBackgroundResource(toastBackgrouds[intStyle]);
 		

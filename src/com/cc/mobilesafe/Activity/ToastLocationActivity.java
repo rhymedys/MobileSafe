@@ -87,6 +87,11 @@ public class ToastLocationActivity extends Activity {
 					
 					iv_drag.layout(left, top, right, bottom);
 					
+					
+					//存储移动后的位置
+					SpUtils.putInt(context, ConstantValue.LOCATION_X, iv_drag.getLeft());
+					SpUtils.putInt(context, ConstantValue.LOCATION_Y, iv_drag.getTop());
+					
 					btnVisible(iv_drag.getHeight());
 					
 				}
