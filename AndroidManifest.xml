@@ -35,14 +35,15 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-         <uses-library android:name="android.test.runner"></uses-library>
+        <uses-library android:name="android.test.runner" >
+        </uses-library>
 
         <!--
         receiver 
         receiver 
         receiver   
         receiver 
-        receiver
+        receiver
         -->
         <receiver android:name=".Reciver.BootReciver" >
             <intent-filter>
@@ -73,7 +74,7 @@
         service 
         service   
         service 
-        service
+        service
         -->
         <service android:name=".Service.LocationService" >
         </service>
@@ -81,13 +82,15 @@
         </service>
         <service android:name=".Service.RocketService" >
         </service>
+        <service android:name=".Service.BlackNumberService" >
+        </service>
 
         <!--
         activity 
         activity 
         activity   
         activity 
-        activity
+        activity
         -->
         <activity
             android:name=".Activity.SplashActivity"

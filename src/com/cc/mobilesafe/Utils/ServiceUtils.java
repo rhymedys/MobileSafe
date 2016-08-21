@@ -9,6 +9,8 @@ import android.content.Context;
 import android.nfc.tech.IsoDep;
 
 public class ServiceUtils {
+	private static final String TAG = "ServiceUtils++++++++";
+
 	/**
 	 * 检查 服务是否运行状态
 	 * @param ServiceName 服务名称
@@ -19,10 +21,14 @@ public class ServiceUtils {
 		ActivityManager activityManager=(ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		List<RunningServiceInfo> runningServices = activityManager.getRunningServices(1000);
 		for (RunningServiceInfo runningServiceInfo : runningServices) {
+			
 			if (runningServiceInfo.service.getClassName().equals(ServiceName)) {
+				
 				result=true;
+				
 			}
 		}
+		LogUtils.i(TAG, "原来service NAME"+ServiceName+ "   结果："+result);
 		return result;
 	}
 }

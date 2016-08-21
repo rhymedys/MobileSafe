@@ -2,6 +2,7 @@ package com.cc.mobilesafe.Activity;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
+import java.util.FormatFlagsConversionMismatchException;
 
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.Adapter.BlackNumAdapter;
@@ -83,6 +84,7 @@ public class BlackNumActivity extends Activity {
 			case REFRESH_ADAPTER:
 				if (blackNumAdapter != null) {
 					blackNumAdapter.notifyDataSetChanged();
+					isLoad=false;
 					LogUtils.i(TAG, "REFRESH_ADAPTER="+REFRESH_ADAPTER);
 				}
 				break;
@@ -157,9 +159,11 @@ public class BlackNumActivity extends Activity {
 						if (listAll.size() < intDataCount) {
 							new Thread(new Runnable() {
 								public void run() {
+									isLoad=true;
 									blackNumberDao = BlackNumberDao.getInstance(context);
 									ArrayList<BlackNumberInfoBean> moreList = blackNumberDao.query(listAll.size());
 									listAll.addAll(moreList);
+									
 									handler.sendEmptyMessage(REFRESH_ADAPTER);
 								}
 							}).start();

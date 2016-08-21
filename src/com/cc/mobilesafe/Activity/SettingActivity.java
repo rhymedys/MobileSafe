@@ -5,6 +5,7 @@ import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
 import com.cc.mobilesafe.Service.AddressService;
+import com.cc.mobilesafe.Service.BlackNumberService;
 import com.cc.mobilesafe.Utils.ConstantValue;
 import com.cc.mobilesafe.Utils.LogUtils;
 import com.cc.mobilesafe.Utils.ServiceUtils;
@@ -12,6 +13,7 @@ import com.cc.mobilesafe.Utils.SpUtils;
 import com.cc.mobilesafe.View.SettingClickView;
 import com.cc.mobilesafe.View.SettingItemView;
 
+import android.accounts.NetworkErrorException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -27,7 +29,8 @@ import android.view.View.OnClickListener;
 public class SettingActivity extends Activity {
 
 	private static final String ADDRESS_SERVICE = "com.cc.mobilesafe.Service.AddressService";
-	protected static final String TAG = "SettingActivity";
+	protected static final String TAG = "SettingActivity+++++";
+	private static final String BLACK_NUMBER_SERVICE = "com.cc.mobilesafe.Service.BlackNumberService";
 	private Context context;
 	private SettingItemView siv_Update;
 	private SettingItemView siv_locationset;
@@ -35,6 +38,7 @@ public class SettingActivity extends Activity {
 	private String[] styles;
 	private int intStyle;
 	private SettingClickView scv_set_toast_location;
+	private SettingItemView siv_set_is_block;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +50,55 @@ public class SettingActivity extends Activity {
 		initSettingShowLocation();
 		initSettingShowLocationStyle();
 		initSettingShowLocationArea();
-		
+		initSettingBlockBlackNumber();
+
+	}
+
+	/**
+	 * 设置开启拦截黑名单功能
+	 */
+	private void initSettingBlockBlackNumber() {
+		siv_set_is_block = (SettingItemView) findViewById(R.id.siv_set_is_block);
+		boolean isRunning = ServiceUtils.isRunning(context, BLACK_NUMBER_SERVICE);
+		siv_set_is_block.setCheck(isRunning);
+
+		siv_set_is_block.setOnClickListener(new OnClickListener() {
+		Intent service = new Intent(context, BlackNumberService.class);
+
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				boolean check = siv_set_is_block.isCheck();
+				siv_set_is_block.setCheck(!check);
+				if (!check) {
+					startService(service);
+				} else {
+					if (service != null) {
+						stopService(service);
+					}
+
+				}
+
+			}
+
+		});
+
 	}
 
 	/**
 	 * 设置来电显示的位置
 	 */
 	private void initSettingShowLocationArea() {
-		// TODO 自动生成的方法存根
+
 		scv_set_toast_location = (SettingClickView) findViewById(R.id.scv_set_toast_location);
 		scv_set_toast_location.setTitle("归属地提示框位置");
 		scv_set_toast_location.setDescription("归属地提示框位置");
 		scv_set_toast_location.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-					startActivity(new Intent(context, ToastLocationActivity.class));
+
+				startActivity(new Intent(context, ToastLocationActivity.class));
 			}
 		});
 	}
@@ -80,13 +116,12 @@ public class SettingActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
+
 				LogUtils.i(TAG, "scv_set_is_location_style.onClick");
-				
-				//重新读取 intStyle
+
+				// 重新读取 intStyle
 				intStyle = SpUtils.getInt(context, ConstantValue.TOAST_STYLE, 0);
-				
-				
+
 				showToastStyleDialog();
 
 			}
@@ -94,7 +129,7 @@ public class SettingActivity extends Activity {
 	}
 
 	protected void showToastStyleDialog() {
-		// TODO 自动生成的方法存根
+
 		Builder builder = new AlertDialog.Builder(context);
 		builder.setIcon(R.drawable.ic_launcher);
 		builder.setTitle("请选择归属地样式");
@@ -102,7 +137,6 @@ public class SettingActivity extends Activity {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				// TODO 自动生成的方法存根
 
 				SpUtils.putInt(context, ConstantValue.TOAST_STYLE, which);
 				scv_set_location_style.setDescription(styles[which]);
@@ -114,7 +148,7 @@ public class SettingActivity extends Activity {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				// TODO 自动生成的方法存根
+
 				dialog.dismiss();
 			}
 
@@ -146,7 +180,7 @@ public class SettingActivity extends Activity {
 	}
 
 	/**
-	 * 是否开启来电位置功能的服务     这是一个被调用的服务 this is service
+	 * 是否开启来电位置功能的服务 这是一个被调用的服务 this is service
 	 * 
 	 * @param is_setting_show_location
 	 */

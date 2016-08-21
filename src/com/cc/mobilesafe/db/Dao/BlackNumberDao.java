@@ -135,5 +135,24 @@ public class BlackNumberDao {
 		return count;
 
 	}
+	
+	
+	/**
+	 * 根据号码查询 mode 的值
+	 * @param phone
+	 * @return mode类型 0sms 1phone 2all   返回-1代表没有结果
+	 */
+	public int queryMode(String phone){
+		int result=-1;
+		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
+		Cursor query = db.query(DB_NAME, new String[]{"mode"}, "phone=?", new String[]{phone}, null, null, null);
+		if (query.moveToNext()) {
+			result=query.getInt(query.getColumnIndex("mode"));
+		}
+		query.close();
+		db.close();
+		return result;
+		
+	}
 
 }
