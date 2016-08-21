@@ -9,7 +9,10 @@ import com.cc.mobilesafe.Utils.SpUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.IBinder;
@@ -53,6 +56,7 @@ public class AddressService extends Service {
 		}
 
 	};
+	private InnerOutCallReciver innerOutCallReciver;
 
 	@Override
 	public void onCreate() {
@@ -67,6 +71,12 @@ public class AddressService extends Service {
 		toastBackgrouds = new int[] { R.drawable.call_locate_white, R.drawable.call_locate_orange,
 				R.drawable.call_locate_blue, R.drawable.call_locate_gray, R.drawable.call_locate_green };
 
+		//开启去电提示框显示
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(Intent.ACTION_NEW_OUTGOING_CALL);
+		innerOutCallReciver = new InnerOutCallReciver();
+		registerReceiver(innerOutCallReciver, intentFilter);
+
 		LogUtils.i(TAG, "已开启");
 		super.onCreate();
 	}
@@ -77,16 +87,23 @@ public class AddressService extends Service {
 		return null;
 	}
 
-	@Override
-	public void onDestroy() {
-		//
-		if (myPhoneStateListener != null && telephonyManager != null) {
-			telephonyManager.listen(myPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+	class InnerOutCallReciver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO 自动生成的方法存根
+			String resultData = getResultData().trim();
+			if (!TextUtils.isEmpty(resultData)) {
+				showToast(resultData);
+			}
+
 		}
-		LogUtils.i(TAG, "正在关闭");
-		super.onDestroy();
+
 	}
 
+	/**
+	 * @author Rhymedys 继承监听电话状态改变
+	 */
 	class MyPhoneStateListener extends PhoneStateListener {
 
 		@Override
@@ -105,7 +122,6 @@ public class AddressService extends Service {
 				break;
 			// 来电状态
 			case TelephonyManager.CALL_STATE_RINGING:
-				QueryAddress(incomingNumber);
 				showToast(incomingNumber);
 				break;
 
@@ -164,24 +180,22 @@ public class AddressService extends Service {
 					// 获取原来距离中心点的距离且更新
 					params.x = params.x + disX;
 					params.y = params.y + disY;
-					windowManager.updateViewLayout(tv_toast, params);
+					windowManager.updateViewLayout(viewToast, params);
 
-					
 					// 容错处理
 					// 22为上方通知栏的高度 大概的
-					if (params.x < 0 ) {
-						params.x=0;
+					if (params.x < 0) {
+						params.x = 0;
 					}
-					if ( params.x+tv_toast.getWidth() > screenWidth ) {
-						params.x=screenWidth-tv_toast.getWidth();
+					if (params.x + viewToast.getWidth() > screenWidth) {
+						params.x = screenWidth - viewToast.getWidth();
 					}
-					if ( params.y < 0 ) {
-						params.y=0;
+					if (params.y < 0) {
+						params.y = 0;
 					}
-					if ( params.y+tv_toast.getHeight() > screenHeight-22) {
-						params.y=screenHeight-tv_toast.getHeight()-22;
+					if (params.y + viewToast.getHeight() > screenHeight - 22) {
+						params.y = screenHeight - viewToast.getHeight() - 22;
 					}
-
 
 					// 重置坐标
 					startX = (int) event.getRawX();
@@ -212,7 +226,12 @@ public class AddressService extends Service {
 		int intStyle = SpUtils.getInt(getApplicationContext(), ConstantValue.TOAST_STYLE, 0);
 		tv_toast.setBackgroundResource(toastBackgrouds[intStyle]);
 
+		
+		QueryAddress(incomingNumber);
+		
 		windowManager.addView(viewToast, params);
+		
+		
 
 	}
 
@@ -230,6 +249,19 @@ public class AddressService extends Service {
 				handler.sendEmptyMessage(0);
 			}
 		}).start();
+	}
+
+	@Override
+	public void onDestroy() {
+		//
+		if (myPhoneStateListener != null && telephonyManager != null) {
+			telephonyManager.listen(myPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+		}
+		if (innerOutCallReciver!=null) {
+			unregisterReceiver(innerOutCallReciver);
+		}
+		LogUtils.i(TAG, "正在关闭");
+		super.onDestroy();
 	}
 
 }
