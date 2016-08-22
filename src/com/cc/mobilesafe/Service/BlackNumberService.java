@@ -3,6 +3,7 @@ package com.cc.mobilesafe.Service;
 import java.lang.reflect.Method;
 
 import com.android.internal.telephony.ITelephony;
+import com.cc.mobilesafe.Reciver.BlackNumberContentObserver;
 import com.cc.mobilesafe.Reciver.BlackNumberReciver;
 import com.cc.mobilesafe.Service.AddressService.MyPhoneStateListener;
 import com.cc.mobilesafe.Utils.LogUtils;
@@ -14,7 +15,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 
 import android.telephony.PhoneStateListener;
@@ -43,8 +46,6 @@ public class BlackNumberService extends Service {
 	@Override
 	public void onCreate() {
 
-
-
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.provider.Telephony.SMS_RECEIVED");
 		filter.setPriority(1000);
@@ -57,7 +58,6 @@ public class BlackNumberService extends Service {
 
 		mDao = BlackNumberDao.getInstance(getApplicationContext());
 
-		
 		super.onCreate();
 
 	}
@@ -128,10 +128,13 @@ public class BlackNumberService extends Service {
 				e.printStackTrace();
 			}
 		}
-		
-		contentResolver = getContentResolver();
-		Uri url= Uri.parse("content://call_log/calls");
-		int delete = contentResolver.delete(url, "number=?", new String[]{phone});
-		LogUtils.i(TAG, String.valueOf(delete));
+
+		// 内容解析者
+		Uri uri = Uri.parse("content://call_log/calls");
+
+		getContentResolver().registerContentObserver(uri, true,
+				new BlackNumberContentObserver(new Handler(), getApplicationContext(), uri, phone));
+
 	}
+
 }
