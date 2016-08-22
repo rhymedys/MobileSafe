@@ -37,6 +37,10 @@ public class BlackNumberService extends Service {
 
 	private ContentResolver contentResolver;
 
+	private Uri uri;
+
+	private BlackNumberContentObserver blackNumberContentObserver;
+
 	@Override
 	public IBinder onBind(Intent intent) {
 
@@ -92,16 +96,6 @@ public class BlackNumberService extends Service {
 
 	}
 
-	@Override
-	public void onDestroy() {
-
-		if (blackNumberReciver != null) {
-			unregisterReceiver(blackNumberReciver);
-		}
-		LogUtils.i(TAG, "onDestroy+++++++++++");
-		super.onDestroy();
-	}
-
 	/**
 	 * 挂断电话
 	 */
@@ -129,12 +123,24 @@ public class BlackNumberService extends Service {
 			}
 		}
 
-		// 内容解析者
-		Uri uri = Uri.parse("content://call_log/calls");
+		uri = Uri.parse("content://call_log/calls");
+		blackNumberContentObserver = new BlackNumberContentObserver(new Handler(), getApplicationContext(), uri, phone);
+		getContentResolver().registerContentObserver(uri, true, blackNumberContentObserver);
 
-		getContentResolver().registerContentObserver(uri, true,
-				new BlackNumberContentObserver(new Handler(), getApplicationContext(), uri, phone));
+	}
 
+	@Override
+	public void onDestroy() {
+
+		if (blackNumberReciver != null) {
+			unregisterReceiver(blackNumberReciver);
+		}
+		if (blackNumberContentObserver!=null) {
+			getContentResolver().unregisterContentObserver(blackNumberContentObserver);
+		}
+
+		LogUtils.i(TAG, "onDestroy+++++++++++");
+		super.onDestroy();
 	}
 
 }
