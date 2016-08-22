@@ -17,10 +17,10 @@ public class Test extends AndroidTestCase {
 //		instance.update("100", "2");
 //		instance.delete("100");
 //		instance.queryAll();
-//		for(int i=0;i<100;i++){	
-//				instance.insert("183000"+i, new Random().nextInt(3));		
-//			
-//		}
-		instance.query(0);
+		for(int i=0;i<100;i++){	
+				instance.insert("183000"+i, new Random().nextInt(3));		
+			
+		}
+//		instance.query(0);
 	}
 }

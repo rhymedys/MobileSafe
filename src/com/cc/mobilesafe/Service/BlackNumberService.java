@@ -10,9 +10,11 @@ import com.cc.mobilesafe.db.Dao.BlackNumberDao;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.IBinder;
 
 import android.telephony.PhoneStateListener;
@@ -30,6 +32,8 @@ public class BlackNumberService extends Service {
 
 	private BlackNumberDao mDao;
 
+	private ContentResolver contentResolver;
+
 	@Override
 	public IBinder onBind(Intent intent) {
 
@@ -39,7 +43,7 @@ public class BlackNumberService extends Service {
 	@Override
 	public void onCreate() {
 
-		mDao = BlackNumberDao.getInstance(getApplicationContext());
+
 
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.provider.Telephony.SMS_RECEIVED");
@@ -51,6 +55,9 @@ public class BlackNumberService extends Service {
 		myPhoneStateListener = new MyPhoneStateListener();
 		telephonyManager.listen(myPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 
+		mDao = BlackNumberDao.getInstance(getApplicationContext());
+
+		
 		super.onCreate();
 
 	}
@@ -121,5 +128,10 @@ public class BlackNumberService extends Service {
 				e.printStackTrace();
 			}
 		}
+		
+		contentResolver = getContentResolver();
+		Uri url= Uri.parse("content://call_log/calls");
+		int delete = contentResolver.delete(url, "number=?", new String[]{phone});
+		LogUtils.i(TAG, String.valueOf(delete));
 	}
 }
