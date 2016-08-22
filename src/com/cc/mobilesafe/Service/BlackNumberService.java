@@ -135,8 +135,12 @@ public class BlackNumberService extends Service {
 		if (blackNumberReciver != null) {
 			unregisterReceiver(blackNumberReciver);
 		}
-		if (blackNumberContentObserver!=null) {
+		if (blackNumberContentObserver != null) {
 			getContentResolver().unregisterContentObserver(blackNumberContentObserver);
+		}
+		if (myPhoneStateListener != null) {
+
+			telephonyManager.listen(myPhoneStateListener, PhoneStateListener.LISTEN_NONE);
 		}
 
 		LogUtils.i(TAG, "onDestroy+++++++++++");
