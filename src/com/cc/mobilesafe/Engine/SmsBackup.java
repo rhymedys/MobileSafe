@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.xmlpull.v1.XmlSerializer;
 
+import com.cc.mobilesafe.Interface.SmsBackupProgressInterface;
 import com.cc.mobilesafe.Utils.LogUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
 
@@ -20,44 +21,38 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Xml;
+import android.widget.ProgressBar;
 
 public class SmsBackup {
 	private static final Uri SMSURI = Uri.parse("content://sms/");
 	private static final String TAG = "SmsBackup";
 	private static final int EMPTY_SMS = 100;
-	
-	private Handler handler = new Handler() {
-
-		@Override
-		public void handleMessage(Message msg) {
-
-			super.handleMessage(msg);
-
-		}
-
-	};
 	private static ContentResolver contentResolver;
 	private static int index = 0;
-	private static FileOutputStream fileOutputStream;
+
 	private static Cursor query;
 
-	public static void backup(Context context, String saveSmsPath, ProgressDialog progressDialog,Handler handler) {
+	public static void backup(Context context, String saveSmsPath, SmsBackupProgressInterface callBack, Handler handler) {
 		LogUtils.i(TAG, SMSURI + "");
+		FileOutputStream fileOutputStream = null;
 		try {
 			contentResolver = context.getContentResolver();
 			query = contentResolver.query(SMSURI, new String[] { "address", "date", "type", "body" }, null, null, null);
-			if (query.getCount() == 0) {
+			if (query.getCount() == 0 || callBack == null) {
 				handler.sendEmptyMessage(EMPTY_SMS);
 				return;
 			}
-			progressDialog.show();
+
 			File file = new File(saveSmsPath);
 			fileOutputStream = new FileOutputStream(file);
+
 			XmlSerializer newSerializer = Xml.newSerializer();
-			newSerializer.startDocument("UTF-8", true);
+			newSerializer.setOutput(fileOutputStream, "utf-8");
+			newSerializer.startDocument("utf-8", true);
 			newSerializer.startTag(null, "smss");
 
-			progressDialog.setMax(query.getCount());
+//			progressDialog.setMax(query.getCount());
+			callBack.setMax(query.getCount());
 
 			while (query.moveToNext()) {
 				newSerializer.startTag(null, "sms");
@@ -85,14 +80,15 @@ public class SmsBackup {
 				Thread.sleep(500);
 				LogUtils.i(TAG, index + "");
 
-				progressDialog.setProgress(index);
+//				progressDialog.setProgress(index);
+				callBack.setProgress(index);
 			}
 			newSerializer.endTag(null, "smss");
 			newSerializer.endDocument();
-			newSerializer.setOutput(fileOutputStream, "UTF-8");
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			LogUtils.i(TAG, "file创建错误");
 		} finally {
 			try {
 				if (query != null) {
@@ -108,4 +104,6 @@ public class SmsBackup {
 		}
 
 	}
+	
+	
 }

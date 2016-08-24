@@ -28,6 +28,9 @@ public class SmsReciver extends BroadcastReceiver {
 
 	private ComponentName mDeviceAdminComponent;
 
+	/* （非 Javadoc）
+	 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
+	 */
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO 自动生成的方法存根
@@ -70,6 +73,7 @@ public class SmsReciver extends BroadcastReceiver {
 					MyDeviceAdmin(context, DeviceAdminReciver.class);
 					if (mDPM.isAdminActive(mDeviceAdminComponent)) {
 						mDPM.lockNow();
+						//解锁密码  0000
 						mDPM.resetPassword("0000", 0);
 					} else {
 						ToastUtil.show(context, "请先激活设备管理器");

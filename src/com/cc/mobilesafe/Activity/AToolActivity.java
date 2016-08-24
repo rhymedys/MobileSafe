@@ -7,6 +7,8 @@ import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
 import com.cc.mobilesafe.Engine.SmsBackup;
+import com.cc.mobilesafe.Interface.SmsBackupProgressInterface;
+import com.cc.mobilesafe.Utils.LogUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
 
 import android.app.Activity;
@@ -24,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ProgressBar;
 
 public class AToolActivity extends Activity {
 
@@ -48,6 +51,8 @@ public class AToolActivity extends Activity {
 	 * 短信为空
 	 */
 	private static final int EMPTY_SMS = 100;
+	protected static final String TAG = "AToolActivity";
+	private ProgressDialog progressDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +70,6 @@ public class AToolActivity extends Activity {
 	 * 短信备份功能
 	 */
 	private void initSmsBackup() {
-
 		findViewById(R.id.tv_sms_backup).setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -75,7 +79,6 @@ public class AToolActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						showSmsBackupDialog();
-
 					}
 
 				});
@@ -104,21 +107,40 @@ public class AToolActivity extends Activity {
 	 * 展示SMS备份过程中的进度条
 	 */
 	private void showSmsBackupDialog() {
-		// TODO 自动生成的方法存根
-		final ProgressDialog progressDialog = new ProgressDialog(context);
+		progressDialog = new ProgressDialog(context);
 		progressDialog.setTitle("短信正在备份中");
 		progressDialog.setIcon(R.drawable.ic_launcher);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+
+		progressDialog.show();
 
 		// 获取系统短信
 		new Thread(new Runnable() {
 
 			public void run() {
-				String smsSavePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.pathSeparator
+
+				String externalStorageState = Environment.getExternalStorageState();
+				// 未完善 一些存储器的优化
+				String smsSavePath = Environment.getExternalStorageDirectory().getAbsoluteFile() + File.separator
 						+ "smsBackup.xml";
-				if (progressDialog != null) {
-					SmsBackup.backup(context, smsSavePath, progressDialog, handler);
-				}
+				LogUtils.i(TAG, externalStorageState);
+				LogUtils.i(TAG, smsSavePath);
+
+				SmsBackupProgressInterface smsBackupInterface = new SmsBackupProgressInterface() {
+					@Override
+					
+					public void setProgress(int index) {
+
+						progressDialog.setProgress(index);
+					}
+
+					@Override
+					public void setMax(int max) {
+						progressDialog.setProgress(max);
+					}
+				};
+				SmsBackup.backup(context, smsSavePath, smsBackupInterface, handler);
+				progressDialog.dismiss();
 
 			}
 		}).start();
