@@ -104,7 +104,6 @@
         <Button
             android:id="@+id/btn_SetupNext"
             style="@style/nextPageStyle"
-            android:onClick="nextPage"
             android:text="下一步 " />
 
     </RelativeLayout>
