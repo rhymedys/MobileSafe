@@ -3,6 +3,7 @@ package com.cc.mobilesafe.Activity;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 
+import com.cc.mobilesafe.AppManagerActivity;
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.Adapter.HomeGridViewAdapter;
 import com.cc.mobilesafe.R.drawable;
@@ -106,7 +107,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 			startActivity(new Intent(context,BlackNumActivity.class));
 			break;
 		case 2:
-
+			startActivity(new Intent(context,AppManagerActivity.class));
 			break;
 		case 3:
 

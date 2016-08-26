@@ -50,7 +50,7 @@
         receiver 
         receiver   
         receiver 
-        receiver
+        receiver
         -->
         <receiver android:name=".Reciver.BootReciver" >
             <intent-filter>
@@ -81,7 +81,7 @@
         service 
         service   
         service 
-        service
+        service
         -->
         <service android:name=".Service.LocationService" >
         </service>
@@ -97,7 +97,7 @@
         activity 
         activity   
         activity 
-        activity
+        activity
         -->
         <activity
             android:name=".Activity.SplashActivity"
@@ -172,9 +172,14 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.BlackNumActivity"
+            android:name=".Activity.BlackNumActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_black_num" >
+        </activity>
+        <activity
+            android:name=".AppManagerActivity"
+              android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_app_manager" >
         </activity>
     </application>
 

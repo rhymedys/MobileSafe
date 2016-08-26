@@ -18,5 +18,6 @@
     <string name="title_activity_toast_location">ToastLocationActivity</string>
     <string name="title_activity_rocket_backgroud">RocketBackgroudActivity</string>
     <string name="title_activity_black_num">BlackNumActivity</string>
+    <string name="title_activity_app_manager">AppManagerActivity</string>
 
 </resources>
