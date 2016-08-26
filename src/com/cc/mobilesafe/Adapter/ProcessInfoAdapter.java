@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.Bean.ProcessInfoBean;
+import com.cc.mobilesafe.Utils.ConstantValue;
+import com.cc.mobilesafe.Utils.SpUtils;
 
 import android.content.Context;
 import android.text.format.Formatter;
@@ -35,7 +37,7 @@ public class ProcessInfoAdapter extends BaseAdapter implements ListAdapter {
 
 	public ProcessInfoAdapter(Context context, List<ProcessInfoBean> userProcessInfo,
 			List<ProcessInfoBean> systemProcessInfo) {
-		// TODO 自动生成的构造函数存根
+		
 		this.context = context;
 		this.userProcessInfo = userProcessInfo;
 		this.systemProcessInfo = systemProcessInfo;
@@ -43,13 +45,13 @@ public class ProcessInfoAdapter extends BaseAdapter implements ListAdapter {
 
 	@Override
 	public int getViewTypeCount() {
-		// TODO 自动生成的方法存根
+		
 		return super.getViewTypeCount() + 1;
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		// TODO 自动生成的方法存根
+		
 		if (position == 0 || position == userProcessInfo.size() + 1) {
 			return 0;
 		} else {
@@ -59,8 +61,13 @@ public class ProcessInfoAdapter extends BaseAdapter implements ListAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO 自动生成的方法存根
-		return userProcessInfo.size() + systemProcessInfo.size() + 2;
+		
+		if (SpUtils.getBoolean(context, ConstantValue.IS_DISPLAY_SYSTEMPROCESS, false)) {
+			return userProcessInfo.size() + systemProcessInfo.size() + 2;
+		} else {
+			return userProcessInfo.size() + 1;
+		}
+
 	}
 
 	/*
@@ -69,7 +76,7 @@ public class ProcessInfoAdapter extends BaseAdapter implements ListAdapter {
 	 */
 	@Override
 	public Object getItem(int position) {
-		// TODO 自动生成的方法存根
+		
 		if (position == 0 || position == userProcessInfo.size() + 1) {
 			return null;
 		} else {
@@ -83,13 +90,13 @@ public class ProcessInfoAdapter extends BaseAdapter implements ListAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		// TODO 自动生成的方法存根
+		
 		return position;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO 自动生成的方法存根
+		
 		int itemViewType = getItemViewType(position);
 		ProcessViewHolder processViewHolder = new ProcessViewHolder();
 		TitleViewHolder titleViewHolder = new TitleViewHolder();

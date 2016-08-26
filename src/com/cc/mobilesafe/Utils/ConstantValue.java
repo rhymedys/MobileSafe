@@ -59,5 +59,15 @@ public class ConstantValue {
 	public static final String ROCKET_LOCATION_X = "rocket_location_x";
 	public static final String ROCKET_LOCATION_Y = "rocket_location_y";
 
+	/**
+	 * 是否显示系统进程
+	 */
+	public static final String IS_DISPLAY_SYSTEMPROCESS = "is_display_systemprocess";
+
+	/**
+	 * 是否锁屏清理
+	 */
+	public static final String IS_LOCK_CLEAR = "is_lock_clear";
+
 
 }

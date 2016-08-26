@@ -224,4 +224,29 @@ public class ProcessInfoProvider {
 		}
 	}
 
+	/**
+	 * 杀死所有进程
+	 * 
+	 * @param context
+	 */
+	public static void killALLProcess(Context context) {
+		// TODO 自动生成的方法存根
+		try {
+			systemService = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+			List<RunningAppProcessInfo> runningAppProcesses = systemService.getRunningAppProcesses();
+			for (RunningAppProcessInfo running : runningAppProcesses) {
+				if (!running.processName.equals(context.getPackageName())) {
+					systemService.killBackgroundProcesses(running.processName);
+				}
+				else {
+					continue;
+				}
+			}
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			LogUtils.i(TAG, "killALLProcess fail!!!!!!!");
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -51,7 +51,7 @@
         receiver 
         receiver   
         receiver 
-        receiver
+        receiver
         -->
         <receiver android:name=".Reciver.BootReciver" >
             <intent-filter>
@@ -82,7 +82,7 @@
         service 
         service   
         service 
-        service
+        service
         -->
         <service android:name=".Service.LocationService" >
         </service>
@@ -92,13 +92,15 @@
         </service>
         <service android:name=".Service.BlackNumberService" >
         </service>
+        <service android:name="com.cc.mobilesafe.Service.LockClearService" >
+        </service>
 
         <!--
         activity 
         activity 
         activity   
         activity 
-        activity
+        activity
         -->
         <activity
             android:name=".Activity.SplashActivity"
@@ -183,9 +185,14 @@
             android:label="@string/title_activity_app_manager" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.ProcessManagerActivity"
+            android:name=".Activity.ProcessManagerActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_process_manager" >
+        </activity>
+        <activity
+            android:name="com.cc.mobilesafe.Activity.ProcessSettingActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_process_setting" >
         </activity>
     </application>
 

@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cc.mobilesafe.Activity.ProcessSettingActivity" >
+
+    <TextView
+        style="@style/TitleStyle"
+        android:text="进程设置"
+        android:textSize="20sp" />
+
+    <CheckBox
+        android:id="@+id/cb_display_systemprocess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="隐藏系统进程" />
+
+    <CheckBox
+        android:id="@+id/cb_lockclear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="锁屏清理已关闭" />
+
+</LinearLayout>

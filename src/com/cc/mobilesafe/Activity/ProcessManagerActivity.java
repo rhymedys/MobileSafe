@@ -15,6 +15,7 @@ import com.cc.mobilesafe.Utils.ToastUtil;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -74,6 +75,15 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 		initUi();
 		initTitleInfoData();
 		initProcessListData();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		super.onActivityResult(requestCode, resultCode, data);
+		if (processAdapter != null) {
+			processAdapter.notifyDataSetChanged();
+		}
 	}
 
 	/**
@@ -173,12 +183,17 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 			clearSelect();
 			break;
 		case R.id.btn_setting:
-			
+			setting();
 			break;
 
 		default:
 			break;
 		}
+	}
+
+	private void setting() {
+
+		startActivityForResult(new Intent(context, ProcessSettingActivity.class), 0);
 	}
 
 	/**
