@@ -19,5 +19,6 @@
     <string name="title_activity_rocket_backgroud">RocketBackgroudActivity</string>
     <string name="title_activity_black_num">BlackNumActivity</string>
     <string name="title_activity_app_manager">AppManagerActivity</string>
+    <string name="title_activity_process_manager">ProcessManagerActivity</string>
 
 </resources>

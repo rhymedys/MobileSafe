@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-public class appInfoListAdapter extends BaseAdapter implements ListAdapter {
+public class AppInfoListAdapter extends BaseAdapter implements ListAdapter {
 
 	private Context context;
 	private ViewHolderListItem viewHolderListItem = null;
@@ -36,7 +36,7 @@ public class appInfoListAdapter extends BaseAdapter implements ListAdapter {
 
 	}
 
-	public appInfoListAdapter(Context context, List<List<AppInfoBean>> allAppInfoList) {
+	public AppInfoListAdapter(Context context, List<List<AppInfoBean>> allAppInfoList) {
 		this.context = context;
 		userAppInfoList = allAppInfoList.get(0);
 		systemAppInfoList = allAppInfoList.get(1);

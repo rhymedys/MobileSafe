@@ -6,7 +6,7 @@ import java.util.List;
 import org.w3c.dom.Text;
 
 import com.cc.mobilesafe.R;
-import com.cc.mobilesafe.Adapter.appInfoListAdapter;
+import com.cc.mobilesafe.Adapter.AppInfoListAdapter;
 import com.cc.mobilesafe.Bean.AppInfoBean;
 import com.cc.mobilesafe.Engine.AppInfoProcider;
 import com.cc.mobilesafe.Utils.LogUtils;
@@ -51,14 +51,14 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	private TextView tv_sdmemory;
 	private ListView lv_applist;
 	private List<List<AppInfoBean>> allAppInfoList;
-	private appInfoListAdapter appInfoListAdapter;
+	private AppInfoListAdapter appInfoListAdapter;
 	private Handler handler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
 
 			super.handleMessage(msg);
-			appInfoListAdapter = new appInfoListAdapter(context, allAppInfoList);
+			appInfoListAdapter = new AppInfoListAdapter(context, allAppInfoList);
 			lv_applist.setAdapter(appInfoListAdapter);
 			if ((tv_des != null) && userAppInfoList != null) {
 				tv_des.setText("用户应用(" + userAppInfoList.size() + ")");

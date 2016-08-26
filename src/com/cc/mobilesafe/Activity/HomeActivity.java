@@ -109,7 +109,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 			startActivity(new Intent(context,AppManagerActivity.class));
 			break;
 		case 3:
-
+			startActivity(new Intent(context,ProcessManagerActivity.class));
 			break;
 		case 4:
 
