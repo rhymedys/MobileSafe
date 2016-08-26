@@ -1,11 +1,14 @@
-package com.cc.mobilesafe;
+package com.cc.mobilesafe.Activity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.Adapter.appInfoListAdapter;
 import com.cc.mobilesafe.Bean.AppInfoBean;
 import com.cc.mobilesafe.Engine.AppInfoProcider;
+import com.cc.mobilesafe.R.id;
+import com.cc.mobilesafe.R.layout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -45,7 +48,9 @@ public class AppManagerActivity extends Activity {
 	private List<AppInfoBean> userAppInfoList;
 	private List<AppInfoBean> systemAppInfoList;
 	private TextView tv_des;
+	
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,7 +74,7 @@ public class AppManagerActivity extends Activity {
 
 				systemAppInfoList = AppInfoProcider.getClassApp(context, true);
 				userAppInfoList = AppInfoProcider.getClassApp(context, false);
-				
+
 				allAppInfoList = new ArrayList<List<AppInfoBean>>();
 				allAppInfoList.add(userAppInfoList);
 				allAppInfoList.add(systemAppInfoList);
@@ -98,7 +103,6 @@ public class AppManagerActivity extends Activity {
 				}
 			}
 		});
-
 	}
 
 	/**

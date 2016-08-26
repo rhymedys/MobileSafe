@@ -64,12 +64,6 @@ public class appInfoListAdapter extends BaseAdapter implements ListAdapter {
 	}
 
 	@Override
-	public View getDropDownView(int position, View convertView, ViewGroup parent) {
-		// TODO 自动生成的方法存根
-		return super.getDropDownView(position, convertView, parent);
-	}
-
-	@Override
 	public int getCount() {
 
 		return userAppInfoList.size() + systemAppInfoList.size() + 2;

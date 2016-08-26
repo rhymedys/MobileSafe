@@ -177,7 +177,7 @@
             android:label="@string/title_activity_black_num" >
         </activity>
         <activity
-            android:name=".AppManagerActivity"
+            android:name="com.cc.mobilesafe.Activity.AppManagerActivity"
               android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_app_manager" >
         </activity>
