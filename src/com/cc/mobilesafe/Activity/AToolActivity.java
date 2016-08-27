@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class AToolActivity extends Activity {
 
@@ -53,7 +54,11 @@ public class AToolActivity extends Activity {
 	private static final int EMPTY_SMS = 100;
 	protected static final String TAG = "AToolActivity";
 	private ProgressDialog progressDialog;
+	private TextView tv_query_normal_phone;
 
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,6 +69,23 @@ public class AToolActivity extends Activity {
 		initPhoneAddress();
 		// 短信备份功能
 		initSmsBackup();
+		// 常用号码查询
+		initCommonPhone();
+	}
+
+	/**
+	 * 常用号码查询
+	 */
+	private void initCommonPhone() {
+		tv_query_normal_phone = (TextView) findViewById(R.id.tv_query_normal_phone);
+		tv_query_normal_phone.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				startActivity(new Intent(context, CommonPhoneActivity.class));
+			}
+		});
 	}
 
 	/**
@@ -128,7 +150,7 @@ public class AToolActivity extends Activity {
 
 				SmsBackupProgressInterface smsBackupInterface = new SmsBackupProgressInterface() {
 					@Override
-					
+
 					public void setProgress(int index) {
 
 						progressDialog.setProgress(index);

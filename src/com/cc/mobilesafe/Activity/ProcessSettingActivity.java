@@ -40,6 +40,9 @@ public class ProcessSettingActivity extends Activity {
 		initLockClear();
 	}
 
+	/**
+	 * 锁屏清理
+	 */
 	private void initLockClear() {
 		cb_lockclear = (CheckBox) findViewById(R.id.cb_lockclear);
 		boolean running = ServiceUtils.isRunning(context, LOCK_CLEARSERVICE);
@@ -72,6 +75,9 @@ public class ProcessSettingActivity extends Activity {
 		});
 	}
 
+	/**
+	 * 是否显示系统进程
+	 */
 	private void initDisplaySystemProcess() {
 
 		cb_IsDisplay = (CheckBox) findViewById(R.id.cb_display_systemprocess);

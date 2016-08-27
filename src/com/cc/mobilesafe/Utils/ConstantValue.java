@@ -69,5 +69,11 @@ public class ConstantValue {
 	 */
 	public static final String IS_LOCK_CLEAR = "is_lock_clear";
 
+	/**
+	 * 是否有快捷方式
+	 */
+	public static final String HAVE_SHORTCUT = "have_shortcut";
+	
+
 
 }

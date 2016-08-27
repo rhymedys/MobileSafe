@@ -3,11 +3,11 @@ package com.cc.mobilesafe.Service;
 import java.lang.reflect.Method;
 
 import com.android.internal.telephony.ITelephony;
+import com.cc.mobilesafe.Engine.BlackNumberDao;
 import com.cc.mobilesafe.Reciver.BlackNumberContentObserver;
 import com.cc.mobilesafe.Reciver.BlackNumberReciver;
 import com.cc.mobilesafe.Service.AddressService.MyPhoneStateListener;
 import com.cc.mobilesafe.Utils.LogUtils;
-import com.cc.mobilesafe.db.Dao.BlackNumberDao;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;

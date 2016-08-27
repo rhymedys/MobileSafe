@@ -3,7 +3,7 @@ package com.cc.mobilesafe.Adapter;
 import java.util.ArrayList;
 
 import com.cc.mobilesafe.Bean.BlackNumberInfoBean;
-import com.cc.mobilesafe.db.Dao.BlackNumberDao;
+import com.cc.mobilesafe.Engine.BlackNumberDao;
 import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.R.id;
 

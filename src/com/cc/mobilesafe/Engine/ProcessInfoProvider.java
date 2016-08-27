@@ -29,7 +29,7 @@ public class ProcessInfoProvider {
 	private static ActivityManager systemService;
 
 	/**
-	 * 赶回进程总数
+	 * 返回进程总数
 	 * 
 	 * @param context
 	 * @return

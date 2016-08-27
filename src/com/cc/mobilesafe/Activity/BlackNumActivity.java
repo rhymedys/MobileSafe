@@ -8,9 +8,9 @@ import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.Adapter.BlackNumAdapter;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.Bean.BlackNumberInfoBean;
+import com.cc.mobilesafe.Engine.BlackNumberDao;
 import com.cc.mobilesafe.Utils.LogUtils;
 import com.cc.mobilesafe.Utils.ToastUtil;
-import com.cc.mobilesafe.db.Dao.BlackNumberDao;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import android.app.Activity;

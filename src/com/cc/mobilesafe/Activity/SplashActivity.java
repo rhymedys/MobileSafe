@@ -31,6 +31,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -112,6 +113,35 @@ public class SplashActivity extends Activity {
 		initData();
 		initAnimation();
 		initDB();
+		initShortCut();
+
+	}
+
+	/**
+	 * 生成快捷方式
+	 */
+	private void initShortCut() {
+		// <action android:name="android.intent.action.HomeActivity" />
+		//
+		// <category android:name="android.intent.category.Default" />
+		if (!SpUtils.getBoolean(context, ConstantValue.HAVE_SHORTCUT, false)) {
+			Intent intentBroadcast = new Intent();
+			intentBroadcast.putExtra(Intent.EXTRA_SHORTCUT_ICON,
+					BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
+			intentBroadcast.putExtra(Intent.EXTRA_SHORTCUT_NAME, "MobileSafe");
+			intentBroadcast.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+			intentBroadcast.putExtra("duplicate", false);
+
+			Intent intentHome = new Intent();
+			// intentHome.setAction("com.cc.mobilesafe.action.HOMEACTIVITY");
+			// intentHome.addCategory("com.cc.mobilesafe.category.DEFAULT");
+			intentHome.setClassName(context, "com.cc.mobilesafe.Activity.HomeActivity");
+
+			intentBroadcast.putExtra(Intent.EXTRA_SHORTCUT_INTENT, intentHome);
+			sendBroadcast(intentBroadcast);
+
+			SpUtils.putBoolean(context, ConstantValue.HAVE_SHORTCUT, false);
+		}
 
 	}
 
@@ -119,8 +149,9 @@ public class SplashActivity extends Activity {
 	 * 初始化数据库
 	 */
 	private void initDB() {
-		// 
+		//
 		initAddressDB("address.db");
+		initAddressDB("commonnum.db");
 	}
 
 	/**
@@ -129,7 +160,7 @@ public class SplashActivity extends Activity {
 	 * @param dbName
 	 */
 	private void initAddressDB(String dbName) {
-		// 
+		//
 		File filesDir = getFilesDir();
 		File file = new File(filesDir, dbName);
 

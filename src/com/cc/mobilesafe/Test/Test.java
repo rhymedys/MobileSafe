@@ -2,7 +2,7 @@ package com.cc.mobilesafe.Test;
 
 import java.util.Random;
 
-import com.cc.mobilesafe.db.Dao.BlackNumberDao;
+import com.cc.mobilesafe.Engine.BlackNumberDao;
 
 import android.test.AndroidTestCase;
 

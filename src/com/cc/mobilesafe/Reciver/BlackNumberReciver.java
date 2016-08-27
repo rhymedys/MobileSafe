@@ -1,6 +1,6 @@
 package com.cc.mobilesafe.Reciver;
 
-import com.cc.mobilesafe.db.Dao.BlackNumberDao;
+import com.cc.mobilesafe.Engine.BlackNumberDao;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
