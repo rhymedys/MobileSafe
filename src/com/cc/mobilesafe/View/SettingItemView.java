@@ -36,7 +36,8 @@ public class SettingItemView extends RelativeLayout {
 
 	public SettingItemView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
-		// TODO 自动生成的构造函数存根
+		// attrs为属性集
+		
 
 		View.inflate(context, R.layout.setting_item_view, this);
 		TextView tv_title = (TextView) findViewById(R.id.tv_title);

@@ -5,6 +5,7 @@ import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
 import com.cc.mobilesafe.Service.AddressService;
+import com.cc.mobilesafe.Service.AppLockService;
 import com.cc.mobilesafe.Service.BlackNumberService;
 import com.cc.mobilesafe.Utils.ConstantValue;
 import com.cc.mobilesafe.Utils.LogUtils;
@@ -31,6 +32,7 @@ public class SettingActivity extends Activity {
 	private static final String ADDRESS_SERVICE = "com.cc.mobilesafe.Service.AddressService";
 	protected static final String TAG = "SettingActivity+++++";
 	private static final String BLACK_NUMBER_SERVICE = "com.cc.mobilesafe.Service.BlackNumberService";
+	private static final String APPLOCK_SERVICE = "com.cc.mobilesafe.Service.AppLockService";
 	private Context context;
 	private SettingItemView siv_Update;
 	private SettingItemView siv_locationset;
@@ -39,6 +41,7 @@ public class SettingActivity extends Activity {
 	private int intStyle;
 	private SettingClickView scv_set_toast_location;
 	private SettingItemView siv_set_is_block;
+	private SettingItemView siv_set_is_applock;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,34 @@ public class SettingActivity extends Activity {
 		initSettingShowLocationStyle();
 		initSettingShowLocationArea();
 		initSettingBlockBlackNumber();
+		initSettingAppLock();
+
+	}
+
+	/**
+	 * 是否开启程序锁功能
+	 */
+	private void initSettingAppLock() {
+		siv_set_is_applock = (SettingItemView) findViewById(R.id.siv_set_is_applock);
+		boolean running = ServiceUtils.isRunning(context, APPLOCK_SERVICE);
+		siv_set_is_applock.setCheck(running);
+
+		siv_set_is_applock.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				Intent service = new Intent(context, AppLockService.class);
+				boolean check = siv_set_is_applock.isCheck();
+				siv_set_is_applock.setCheck(!check);
+				if (check && service != null) {
+					stopService(service);
+				} else {
+					startService(service);
+				}
+				
+			}
+		});
 
 	}
 
@@ -63,11 +94,11 @@ public class SettingActivity extends Activity {
 		siv_set_is_block.setCheck(isRunning);
 
 		siv_set_is_block.setOnClickListener(new OnClickListener() {
-		Intent service = new Intent(context, BlackNumberService.class);
+			Intent service = new Intent(context, BlackNumberService.class);
 
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
+
 				boolean check = siv_set_is_block.isCheck();
 				siv_set_is_block.setCheck(!check);
 				if (!check) {
@@ -76,11 +107,8 @@ public class SettingActivity extends Activity {
 					if (service != null) {
 						stopService(service);
 					}
-
 				}
-
 			}
-
 		});
 
 	}

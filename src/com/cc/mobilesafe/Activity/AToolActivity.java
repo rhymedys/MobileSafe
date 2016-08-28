@@ -56,9 +56,6 @@ public class AToolActivity extends Activity {
 	private ProgressDialog progressDialog;
 	private TextView tv_query_normal_phone;
 
-	
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -71,6 +68,23 @@ public class AToolActivity extends Activity {
 		initSmsBackup();
 		// 常用号码查询
 		initCommonPhone();
+		//程序锁
+		initAppLock();
+	}
+
+	/**
+	 * 程序锁
+	 */
+	private void initAppLock() {
+		// TODO 自动生成的方法存根
+		findViewById(R.id.tv_app_lock).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				startActivity(new Intent(context, AppLockActivity.class));
+			}
+		});
 	}
 
 	/**
@@ -79,7 +93,7 @@ public class AToolActivity extends Activity {
 	private void initCommonPhone() {
 		tv_query_normal_phone = (TextView) findViewById(R.id.tv_query_normal_phone);
 		tv_query_normal_phone.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
