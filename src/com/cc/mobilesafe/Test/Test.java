@@ -3,6 +3,7 @@ package com.cc.mobilesafe.Test;
 import java.util.Random;
 
 import com.cc.mobilesafe.Engine.BlackNumberDao;
+import com.cc.mobilesafe.Engine.VirusDao;
 
 import android.test.AndroidTestCase;
 
@@ -12,15 +13,17 @@ import android.test.AndroidTestCase;
  */
 public class Test extends AndroidTestCase {
 	public void insert(){
-		BlackNumberDao instance = BlackNumberDao.getInstance(getContext());
+//		BlackNumberDao instance = BlackNumberDao.getInstance(getContext());
 //		instance.insert("100", "1");
 //		instance.update("100", "2");
 //		instance.delete("100");
 //		instance.queryAll();
-		for(int i=0;i<100;i++){	
-				instance.insert("183000"+i, new Random().nextInt(3));		
-			
-		}
+//		for(int i=0;i<100;i++){	
+//				instance.insert("183000"+i, new Random().nextInt(3));		
+//			
+//		}
 //		instance.query(0);
+		
+		VirusDao.getList();
 	}
 }

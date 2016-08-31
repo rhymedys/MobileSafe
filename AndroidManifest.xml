@@ -53,7 +53,7 @@
         receiver 
         receiver   
         receiver 
-        receiver
+        receiver
         -->
         <receiver android:name=".Reciver.BootReciver" >
             <intent-filter>
@@ -98,7 +98,7 @@
         service 
         service   
         service 
-        service
+        service
         -->
         <service android:name=".Service.LocationService" >
         </service>
@@ -120,7 +120,7 @@
         activity 
         activity   
         activity 
-        activity
+        activity
         -->
         <activity
             android:name=".Activity.SplashActivity"
@@ -225,11 +225,16 @@
             android:label="@string/title_activity_app_lock" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.EnterPsdActivity"
+            android:name=".Activity.EnterPsdActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_enter_psd"
             android:excludeFromRecents="true"
+            android:label="@string/title_activity_enter_psd"
             android:launchMode="singleInstance" >
+        </activity>
+        <activity
+            android:name=".AnitVirusActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_anit_virus" >
         </activity>
     </application>
 

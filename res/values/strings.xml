@@ -24,5 +24,6 @@
     <string name="title_activity_common_phone">CommonPhoneActivity</string>
     <string name="title_activity_app_lock">AppLockActivity</string>
     <string name="title_activity_enter_psd">EnterPsdActivity</string>
+    <string name="title_activity_anit_virus">AnitVirusActivity</string>
 
 </resources>

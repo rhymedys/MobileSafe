@@ -64,6 +64,7 @@ public class SplashActivity extends Activity {
 	protected static final int IO_ERROR = 103;
 	protected static final int JSON_ERROR = 104;
 
+
 	private Context context;
 	private TextView tv_version_name;
 	private String versionName;
@@ -152,6 +153,7 @@ public class SplashActivity extends Activity {
 		//
 		initAddressDB("address.db");
 		initAddressDB("commonnum.db");
+		initAddressDB("antivirus.db");
 	}
 
 	/**
@@ -180,7 +182,9 @@ public class SplashActivity extends Activity {
 					fileOutputStream.flush();
 				}
 			} catch (Exception e) {
+				LogUtils.i(TAG, dbName+"fail!!!");
 				e.printStackTrace();
+			
 			} finally {
 				if (fileOutputStream != null && inputStream != null) {
 					try {
