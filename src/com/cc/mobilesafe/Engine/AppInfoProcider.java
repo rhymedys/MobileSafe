@@ -50,9 +50,11 @@ public class AppInfoProcider {
 
 	/**
 	 * 分类获取 系统应用 或者 用户应用
+	 * 
 	 * @param context
-	 * @param isSystemApp true返回的是系统应用，false 返回的是 用户应用
-	 * @return  true返回的是系统应用，false 返回的是 用户应用
+	 * @param isSystemApp
+	 *            true返回的是系统应用，false 返回的是 用户应用
+	 * @return true返回的是系统应用，false 返回的是 用户应用
 	 */
 	public static List<AppInfoBean> getClassApp(Context context, boolean isSystemApp) {
 		ArrayList<AppInfoBean> allAppInfoList = getAppInfoList(context);
@@ -62,8 +64,8 @@ public class AppInfoProcider {
 				// 系统应用
 				classAppList.add(bean);
 			}
-			if (!isSystemApp &! bean.isSystemApp){
-				//  用户应用
+			if (!isSystemApp & !bean.isSystemApp) {
+				// 用户应用
 				classAppList.add(bean);
 			}
 

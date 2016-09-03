@@ -26,5 +26,8 @@
     <string name="title_activity_enter_psd">EnterPsdActivity</string>
     <string name="title_activity_anit_virus">AnitVirusActivity</string>
     <string name="title_activity_clear_cache">ClearCacheActivity</string>
+    <string name="title_activity_base_cache_clean">BaseCacheCleanActivity</string>
+    <string name="title_activity_clear_sdcache">ClearSDCacheActivity</string>
+    <string name="title_activity_traffic">TrafficActivity</string>
 
 </resources>

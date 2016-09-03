@@ -45,6 +45,7 @@
     <permission android:name="android.permission.DELETE_CACHE_FILES" />
 
     <application
+        android:name="com.cc.mobilesafe.global.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -56,8 +57,7 @@
         receiver 
         receiver 
         receiver   
-        receiver 
-        receiver
+        receiver 
         -->
         <receiver android:name=".Reciver.BootReciver" >
             <intent-filter>
@@ -102,7 +102,7 @@
         service 
         service   
         service 
-        service
+        service
         -->
         <service android:name=".Service.LocationService" >
         </service>
@@ -124,7 +124,7 @@
         activity 
         activity   
         activity 
-        activity
+        activity
         -->
         <activity
             android:name=".Activity.SplashActivity"
@@ -241,8 +241,24 @@
             android:label="@string/title_activity_anit_virus" >
         </activity>
         <activity
-            android:name="com.cc.mobilesafe.Activity.ClearCacheActivity"
+            android:name=".Activity.ClearCacheActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_clear_cache" >
+        </activity>
+        <activity
+            android:name=".Activity.BaseCacheCleanActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_base_cache_clean" >
+        </activity>
+        <activity
+            android:name=".Activity.ClearSDCacheActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_clear_sdcache" >
+        </activity>
+        <activity
+            android:name=".TrafficActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_traffic" >
         </activity>
     </application>
 

@@ -9,6 +9,7 @@ import com.cc.mobilesafe.R.drawable;
 import com.cc.mobilesafe.R.id;
 import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.R.menu;
+import com.cc.mobilesafe.TrafficActivity;
 import com.cc.mobilesafe.Utils.ConstantValue;
 import com.cc.mobilesafe.Utils.Md5Util;
 import com.cc.mobilesafe.Utils.SpUtils;
@@ -112,13 +113,14 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 			startActivity(new Intent(context,ProcessManagerActivity.class));
 			break;
 		case 4:
-
+			startActivity(new Intent(context,TrafficActivity.class));
 			break;
 		case 5:
 			startActivity(new Intent(context,AnitVirusActivity.class));
 			break;
 		case 6:
-			startActivity(new Intent(context,ClearCacheActivity.class));
+			startActivity(new Intent(context,BaseCacheCleanActivity.class));
+//			startActivity(new Intent(context,ClearCacheActivity.class));
 			break;
 		case 7:
 			startActivity(new Intent(context,AToolActivity.class));
@@ -130,7 +132,6 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 		default:
 			break;
 		}
-
 	}
 
 	/**
