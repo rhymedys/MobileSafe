@@ -34,8 +34,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import net.youmi.android.normal.banner.BannerManager;
 
 public class HomeActivity extends Activity implements OnItemClickListener {
 
@@ -50,9 +52,26 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 		setContentView(R.layout.activity_home);
 		this.context = this;
 
+		initAd();
+		
 		initUI();
 		initData();
 		gv_HomeView.setOnItemClickListener(this);
+	}
+	
+
+	/**
+	 * 初始化广告
+	 */
+	private void initAd() { // TODO 自动生成的方法存根
+		// 实例化广告条
+		View adView = BannerManager.getInstance(context).getBanner(context);
+
+		// 获取要嵌入广告条的布局
+		LinearLayout adLayout=(LinearLayout)findViewById(R.id.adLayout);
+
+		// 将广告条加入到布局中
+		adLayout.addView(adView);
 	}
 
 	/**

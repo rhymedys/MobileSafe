@@ -1,6 +1,8 @@
 package com.cc.mobilesafe.Activity;
 
 import java.io.File;
+import net.youmi.android.AdManager;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -110,6 +112,8 @@ public class SplashActivity extends Activity {
 		setContentView(R.layout.activity_splash);
 		this.context = this;
 
+		AdManager.getInstance(context).init("b97756202e2952f0", "d830db6fe9714e25", true, false);
+		
 		initUI();
 		initData();
 		initAnimation();

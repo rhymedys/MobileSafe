@@ -22,6 +22,14 @@
         android:textColor="#000" />
 
     <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/adLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
