@@ -1,11 +1,15 @@
-package com.cc.mobilesafe;
+package com.cc.mobilesafe.Activity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.cc.mobilesafe.R;
 import com.cc.mobilesafe.Bean.VirusBean;
 import com.cc.mobilesafe.Engine.VirusDao;
+import com.cc.mobilesafe.R.anim;
+import com.cc.mobilesafe.R.id;
+import com.cc.mobilesafe.R.layout;
 import com.cc.mobilesafe.Utils.LogUtils;
 import com.cc.mobilesafe.Utils.Md5Util;
 import com.cc.mobilesafe.Utils.ToastUtil;
@@ -201,5 +205,4 @@ public class AnitVirusActivity extends Activity {
 			}
 		}
 	}
-
 }
